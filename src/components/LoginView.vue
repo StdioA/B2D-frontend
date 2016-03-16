@@ -21,7 +21,7 @@
             <input type="password" name="password" placeholder="Password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button" @click="login">Login</div>
+        <div class="ui fluid large teal submit button" @click="try_login">Login</div>
       </div>
 
       <div class="ui error message"></div>
@@ -42,9 +42,18 @@ export default {
   name: 'LoginView',
   vuex: {
     actions: {
-      login: ({dispatch}) => {
-        var username = $('input[name=username]').val()
-        dispatch('LOGIN', {username})
+      // 局部action, 由于这个action只在login页面中使用，所以不需要注册到全局
+      login: ({ dispatch }, user) => {
+        dispatch('LOGIN', user)
+      }
+    }
+  },
+  methods: {
+    try_login: function (e) {
+      var username = $('input[name=username]').val()
+      // 用户登录认证逻辑
+      if (username.trim()) {
+        this.login({username: username})
       }
     }
   }
