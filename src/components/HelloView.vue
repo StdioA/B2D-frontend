@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+<div class="ui main text container">
+  <div class="row">
     <img class="logo" src="../assets/logo.png">
     <hello></hello>
     <p>
@@ -19,6 +20,7 @@
     </p>
     <a v-link="{ path:'/login' }">Login</a>
   </div>
+</div>
 </template>
 
 <script>
@@ -34,7 +36,7 @@ export default {
 </script>
 
 <style>
-html {
+/*html {
   height: 100%;
 }
 
@@ -45,15 +47,15 @@ body {
   height: 100%;
 }
 
-/*#app {
+#app {
   margin-top: -100px;
   max-width: 600px;
   font-family: Helvetica, sans-serif;
   text-align: center;
-}*/
+}
 
 .logo {
   width: 100px;
   height: 100px
-}
+}*/
 </style>
