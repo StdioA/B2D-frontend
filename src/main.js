@@ -19,15 +19,28 @@ Vue.use(Vuex)
 var router = new Router()
 
 router.map({
-  '/hello': {
-    component: HelloView
-  },
   '/login': {
     component: LoginView
   },
   '/': {
     component: HomePageView
-  }
+  },
+  '/user/:id'{
+    component: UserView
+  },
+    '/item':{
+    component: ItemView
+  },
+    '/register':{
+      component: RegisterView
+  },
+    '/items':{
+      component: ItemsView
+  },
+    '/payment':{
+      component: PaymentView
+    }
+
 })
 
 router.redirect({
