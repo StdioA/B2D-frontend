@@ -25,10 +25,10 @@ router.map({
   '/': {
     component: HomePageView
   },
-  '/user/:id'{
+  '/user'{
     component: UserView
   },
-    '/item':{
+    '/item/:id':{
     component: ItemView
   },
     '/register':{
