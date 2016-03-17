@@ -15,10 +15,7 @@
 </div>
 </template>
 
-<style>
-  body {
-  background-color: #FFFFFF;
-}
+<style lang="less">
 .ui.menu .item img.logo {
   margin-right: 1.5em;
 }
@@ -27,10 +24,6 @@
 }
 .wireframe {
   margin-top: 2em;
-}
-.ui.footer.segment {
-  margin: 5em 0em 0em;
-  padding: 5em 0em;
 }
 
 </style>

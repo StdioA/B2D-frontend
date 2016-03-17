@@ -9,6 +9,7 @@
       <a v-link="{ name: 'homepage' }" class="item">Home</a>
       <div v-if="!user.logged_in" class="right menu">
         <a v-link="{ name: 'login' }" class="item">Log in</a>
+        <a v-link="{ name: 'register' }" class="item">Sign up</a>
       </div>
       <div class="ui simple right dropdown item" v-else>
         {{ user.username }} <i class="dropdown icon"></i>
@@ -91,6 +92,12 @@ $(document).ready(function () {
 })
 </script>
 
-<style>
+<style lang="less">
+body {
+  background: #eee;
+}
 
+.ui.footer.segment {
+  padding: 2em 0em;
+}
 </style>

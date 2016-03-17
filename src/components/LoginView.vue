@@ -74,33 +74,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+.login.grid {
+  margin-top: 15px;  
+  height: 80%;
+}
 .login {
-  top: 4em;
-  height: 70%;
-}
-.image {
-  margin-top: -100px;
-}
-.column {
-  max-width: 450px;
-}
+  background: #eee;
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut{
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+  .image {
+    // margin-top: -100px;
+  }
+  .column {
+    max-width: 450px;
+  }
 }
 </style>
