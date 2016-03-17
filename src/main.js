@@ -43,6 +43,7 @@ router.map({
 
 })
 
+
 router.redirect({
   '*': '/hello'
 })
