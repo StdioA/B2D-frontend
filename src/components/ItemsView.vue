@@ -1,5 +1,5 @@
 <template>
-<div class="ui main container items">
+<div class="ui main container items ">
   <h1>Items List</h1>
   <div class="ui link cards">
     <div class="link card" v-for="i in 10">
