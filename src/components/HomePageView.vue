@@ -33,35 +33,36 @@
 <div class="pusher homepage">
   <div class="ui inverted vertical masthead center aligned segment">
 
-  <div class="ui container">
-    <div class="ui large secondary inverted pointing menu">
-      <a class="toc item">
-        <i class="sidebar icon"></i>
-      </a>
-      <a class="active item">Home</a>
-      <a class="item">Work</a>
-      <div v-if="!user.logged_in" class="right item">
-          <a v-link="{ name: 'login' }" class="ui inverted button">Log in</a>
-          <a v-link="{ name: 'register' }"class="ui inverted button">Sign Up</a>
-      </div>
-      <div v-else class="ui simple right dropdown item" >
-        {{ user.username }} <i class="dropdown icon"></i>
-        <div class="menu">
-          <a class="item" v-link="{ path: '/logout' }">Log out</a>
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing noborder menu">
+        <!-- <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a> -->
+        <a v-link="{ name: 'homepage' }" class="active item">Home</a>
+        <a v-link="{ name: 'items' }" class="item">Item List</a>
+        <div v-if="!user.logged_in" class="right item">
+            <a v-link="{ name: 'login' }" class="ui inverted button">Log in</a>
+            <a v-link="{ name: 'register' }"class="ui inverted button">Sign Up</a>
         </div>
+        <div v-else class="ui right simple dropdown item" >
+          {{ user.username }} <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item" v-link="{ path: '/logout' }">Log out</a>
+          </div>
+        </div>
+        
       </div>
     </div>
-  </div>
 
-  <div class="ui text container">
-    <h1 class="ui inverted header">
-    Buy2Die
-    </h1>
-    <h2>Buy whatever you want when you want buy!</h2>
-    <a v-link="{ name: 'login' }">
-      <div class="ui huge primary button">买买买<i class="right arrow icon"></i></div>
-    </a>
-  </div>
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+      Buy2Die
+      </h1>
+      <h2>Buy whatever you want when you want buy!</h2>
+      <a v-link="{ name: 'login' }">
+        <div class="ui huge primary button">买买买<i class="right arrow icon"></i></div>
+      </a>
+    </div>
 
   </div>
 
@@ -165,10 +166,12 @@ export default {
 
 <style lang="less">
 .homepage {
+  .noborder {
+    border: none !important;
+  }
   .hidden.menu {
     display: none;
   }
-
   .masthead.segment {
     background: url("../assets/background2.jpg");
     backgorund-size: cover;
@@ -176,49 +179,58 @@ export default {
     min-height: 700px;
     padding: 1em 0em;
   }
-  .masthead .logo.item img {
-    margin-right: 1em;
-  }
-  .masthead .ui.menu .ui.button {
-    margin-left: 0.5em;
-  }
-  .masthead h1.ui.header {
-    margin-top: 3em;
-    margin-bottom: 0em;
-    font-size: 4em;
-    font-weight: normal;
-  }
-  .masthead h2 {
-    font-size: 1.7em;
-    font-weight: normal;
+  .masthead {
+    .logo.item img {
+      margin-right: 1em;
+    }
+    .ui.menu .ui.button {
+      margin-left: 0.5em;
+    }
+    .ui.simple.dropdown.item {
+      .menu {
+        // position: relative;
+        // top: -5px;
+      }
+    }
+    h1.ui.header {
+      margin-top: 3em;
+      margin-bottom: 0em;
+      font-size: 4em;
+      font-weight: normal;
+    }
+    h2 {
+      font-size: 1.7em;
+      font-weight: normal;
+    }
   }
 
   .ui.vertical.stripe {
     padding: 8em 0em;
-  }
-  .ui.vertical.stripe h3 {
-    font-size: 2em;
-  }
-  .ui.vertical.stripe .button + h3,
-  .ui.vertical.stripe p + h3 {
-    margin-top: 3em;
-  }
-  .ui.vertical.stripe .floated.image {
-    clear: both;
-  }
-  .ui.vertical.stripe p {
-    font-size: 1.33em;
-  }
-  .ui.vertical.stripe .horizontal.divider {
-    margin: 3em 0em;
+
+    h3 {
+      font-size: 2em;
+    }
+    .button + h3, p + h3 {
+      margin-top: 3em;
+    }
+    .floated.image {
+      clear: both;
+    }
+    p {
+      font-size: 1.33em;
+    }
+    .horizontal.divider {
+      margin: 3em 0em;
+    }
   }
 
   .quote.stripe.segment {
     padding: 0em;
-  }
-  .quote.stripe.segment .grid .column {
-    padding-top: 5em;
-    padding-bottom: 5em;
+
+    .grid .column {
+      padding-top: 5em;
+      padding-bottom: 5em;
+    }
   }
 
   .footer.segment {
