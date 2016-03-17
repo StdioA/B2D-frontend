@@ -1,7 +1,10 @@
 
 export default {
   LOGIN (state, user) {
-    console.log(user)
     state.user = user
+    state.user.logged_in = true
+  },
+  LOGOUT (state) {
+    state.user = { logged_in: false }
   }
 }

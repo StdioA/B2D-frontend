@@ -58,4 +58,4 @@ router.redirect({
   '*': '/hello'
 })
 
-router.start(App, '#app')
+router.start(App, '[app]')
