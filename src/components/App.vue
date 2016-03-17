@@ -14,7 +14,7 @@
       <div class="ui simple right dropdown item" v-else>
         {{ user.username }} <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item" v-link="{ path: '/logout' }">Log out</a>
+          <a class="item" v-link="{ name: 'logout' }">Log out</a>
           <!-- <div class="divider"></div> -->
           <!-- <div class="header">Header Item</div> -->
           <!-- <div class="item">
@@ -77,18 +77,18 @@ export default {
 
 $(document).ready(function () {
   // fix menu when passed
-  $('.masthead').visibility({
-    once: false,
-    onBottomPassed: function () {
-      $('.fixed.menu').transition('fade in')
-    },
-    onBottomPassedReverse: function () {
-      $('.fixed.menu').transition('fade out')
-    }
-  })
+//   $('.masthead').visibility({
+//     once: false,
+//     onBottomPassed: function () {
+      // $('.fixed.menu').transition('fade in')
+//     },
+//     onBottomPassedReverse: function () {
+      // $('.fixed.menu').transition('fade out')
+//     }
+//   })
 
-  // create sidebar and attach to menu open
-  $('.ui.sidebar').sidebar('attach events', '.toc.item')
+//   // create sidebar and attach to menu open
+//   $('.ui.sidebar').sidebar('attach events', '.toc.item')
 })
 </script>
 

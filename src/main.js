@@ -52,7 +52,7 @@ router.map({
     component: ItemView
   },
   '/items': {
-    name: 'itmes',
+    name: 'items',
     component: ItemsView
   },
   '/payment': {

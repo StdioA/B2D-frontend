@@ -65,6 +65,7 @@ export default {
       // 用户登录认证逻辑
       if (username.trim() && username === password) {
         this.login({username: username})
+        this.$router.go({name: 'homepage'})
       } else {
         this.login_status.failed = true
         this.login_status.message = 'Incorrect username or password.'
