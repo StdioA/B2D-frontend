@@ -2,15 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Vuex from 'vuex'
 import App from './components/App'
-import HelloView from './components/HelloView'
-import LoginView from './components/LoginView'
-import HomePageView from './components/HomePageView'
 
-/* eslint-disable no-new */
-// new Vue({
-//   el: 'body',
-//   components: { View }
-// });
+// import the views
+import HomePageView from './components/HomePageView'
+import LoginView from './components/LoginView'
+import LogoutView from './components/LogoutView'
+import RegisterView from './components/RegisterView'
+import UserView from './components/UserView'
+import ItemView from './components/ItemView'
+import ItemsView from './components/ItemsView'
+import PaymentView from './components/PaymentView'
 
 Vue.config.debug = true
 Vue.use(Router)
@@ -19,28 +20,45 @@ Vue.use(Vuex)
 var router = new Router()
 
 router.map({
-  '/login': {
-    component: LoginView
-  },
   '/': {
+    name: 'homepage',
     component: HomePageView
   },
+  '/login': {
+    name: 'login',
+    component: LoginView
+  },
+  '/logout': {
+    name: 'logout',
+    component: LogoutView
+  },
+<<<<<<< HEAD
   '/user'{
     component: UserView
   },
     '/item/:id':{
+=======
+  '/register': {
+    name: 'register',
+    component: RegisterView
+  },
+  '/user': {
+    name: 'user',
+    component: UserView
+  },
+  '/item/:id': {
+    name: 'item',
+>>>>>>> cd5ea84360eea4efdf177d6e9c49e86dd8456cbb
     component: ItemView
   },
-    '/register':{
-      component: RegisterView
+  '/items': {
+    name: 'itmes',
+    component: ItemsView
   },
-    '/items':{
-      component: ItemsView
-  },
-    '/payment':{
-      component: PaymentView
-    }
-
+  '/payment': {
+    name: 'payment',
+    component: PaymentView
+  }
 })
 
 
@@ -48,4 +66,4 @@ router.redirect({
   '*': '/hello'
 })
 
-router.start(App, '#app')
+router.start(App, '[app]')

@@ -1,6 +1,6 @@
 
 export default {
   user: {
-    username: 'User'
+    logged_in: false
   }
 }

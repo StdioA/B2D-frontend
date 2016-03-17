@@ -3,6 +3,6 @@
 export const login = makeAction('LOGIN')
 
 function makeAction (type) {
-  console.log('makeaction ' + type)
+  // console.log('makeaction ' + type)
   return ({ dispatch }, ...args) => dispatch(type, ...args)
 }
