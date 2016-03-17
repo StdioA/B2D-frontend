@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "jquery": "^2.2.1",
+    "semantic-ui": "^2.1.8",
     "vue": "^1.0.17",
     "vue-router": "^0.7.11",
     "vuex": "^0.6.2"

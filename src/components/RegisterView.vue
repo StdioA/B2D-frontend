@@ -7,12 +7,12 @@
         Sign up to Buy2Die
       </div>
     </h2>
-    <form class="ui large form" :class="{ 'error': !password_match }">
+    <form class="ui large form" :class="{ 'error': !password_match || !password_length || !password_complex || !username_legal}">
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="username" v-model="username" placeholder="Username">
           </div>
         </div>
         <div class="field">
@@ -27,12 +27,15 @@
             <input type="password" name="repeat_password" v-model="password_r" placeholder="Repeat Password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button" @click="try_register">Register</div>
+        <div class="ui fluid large teal submit button" @click="try_login">Register</div>
+      </div>
+      <div class="ui error message" v-show="!password_length || !password_complex || !password_match || !username_legal">
+        <p v-show="!username_legal">Username contain invalid characters.</p>
+        <p v-show="!password_length">Password must be at least 6 characters.</p>
+        <p v-show="!password_complex">Sorry, your password is too weak. Use a combination of numeric and characters to increase password strength.</p>
+        <p v-show="!password_match">Please enter the same password as above.</p>
       </div>
 
-      <div class="ui error message" v-show="!password_match">
-        Password must match.
-      </div>
 
     </form>
 
@@ -51,7 +54,8 @@ export default {
   data: () => {
     return {
       password: '',
-      password_r: ''
+      password_r: '',
+      username: ''
     }
   },
   vuex: {
@@ -65,18 +69,43 @@ export default {
   computed: {
     password_match: function () {
       return !this.password_r || (this.password === this.password_r)
+    },
+    password_legal: function () {
+      return this.password_length && this.password_complex
+    },
+    password_length: function () {
+      return this.password.length > 5
+    },
+    password_complex: function () {
+      var patrn = /^(?:\d+|[a-zA-Z]+|[!@#$%^&*]+)$/
+      if (!patrn.exec(this.password)) return true
+      else return false
+    },
+    username_legal: function () {
+      var patrn = /^([a-zA-Z0-9]|[._]){4,19}$/
+      if (!patrn.exec(this.username.toString)) return true
+      else return false
     }
   },
   methods: {
-    try_register: function (e) {
-    }
+    // try_login: function (e) {
+    //   var username = $('input[name=username]').val()
+    //   var password = $('input[name=password]').val()
+    //   // 用户登录认证逻辑
+    //   if (username.trim() && username === password) {
+    //     this.login({username: username})
+    //   } else {
+    //     this.login_status.failed = true
+    //     this.login_status.message = 'Incorrect username or password.'
+    //   }
+    // }
   }
 }
 </script>
 
 <style lang="less">
 // .login.grid {
-//   margin-top: 15px;  
+//   margin-top: 15px;
 //   height: 80%;
 // }
 // .login {

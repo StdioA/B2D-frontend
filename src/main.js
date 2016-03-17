@@ -32,12 +32,6 @@ router.map({
     name: 'logout',
     component: LogoutView
   },
-<<<<<<< HEAD
-  '/user'{
-    component: UserView
-  },
-    '/item/:id':{
-=======
   '/register': {
     name: 'register',
     component: RegisterView
@@ -48,7 +42,6 @@ router.map({
   },
   '/item/:id': {
     name: 'item',
->>>>>>> cd5ea84360eea4efdf177d6e9c49e86dd8456cbb
     component: ItemView
   },
   '/items': {
@@ -60,7 +53,6 @@ router.map({
     component: PaymentView
   }
 })
-
 
 router.redirect({
   '*': '/hello'

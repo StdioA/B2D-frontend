@@ -4,7 +4,7 @@
   <div class="ui link cards">
     <div class="link card" v-for="i in 10">
       <div class="image">
-        <img src="../assets/HDMI_hdmi2.svg">
+          <img src="../assets/HDMI_hdmi2.svg">
       </div>
       <div class="content">
         <a v-link="{ name:'item', params: { id: i } }"
@@ -37,3 +37,5 @@
 }
 
 </style>
+<script>
+</script>
