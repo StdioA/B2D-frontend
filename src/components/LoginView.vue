@@ -18,7 +18,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="password" placeholder="Password" @keyup.enter="try_login">
           </div>
         </div>
         <div class="ui fluid large teal submit button" @click="try_login">Login</div>
