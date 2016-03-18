@@ -11,7 +11,7 @@
           <div class="field">
             <!-- 后期替换成物品名 -->
             <label>Item ID</label>
-            <input type="text" name="item" placeholder="Item">
+            <input type="text" name="item" placeholder="Item" v-model="item_id">
           </div>
           <div class="fields">
             <div class="eight wide field">
@@ -40,7 +40,7 @@
                 Ok I'm sure, BUY IT!
               </div>
               <div class="or"></div>
-              <div class="ui orange button">
+              <div class="ui orange button" @click="go_back">
                 Cancel
               </div>
             </div>
@@ -62,43 +62,23 @@ export default {
   },
   vuex: {
     getters: {
-      id: function (state) {
-        console.log('Get ID ' + state.current_item)
-        return state.current_item
-      }
+      item_id: (state) => state.current_item,
+      logged_in: (state) => state.user.logged_in
     }
   },
-  router: {
-    canActivate: function (transition) {
-      console.log('Call canActivate' + this.id)
-      if (this.id === null) {
-        console.log('订单不存在，跳转到items页面')
-        transition.abort('订单不存在，跳转到items页面')
-      } else {
-        transition.next()
-      }
-    },
-
-    activate: function (transition) {
-      console.log('Call activate' + this.id)
-      if (this.id === null) {
-        console.log('订单不存在，跳转到items页面')
+  route: {
+    data: function (transition) {
+      console.log('login' + this.logged_in)
+      if (this.item_id === null || this.logged_in === false) {
         transition.redirect({ name: 'items' })
-      } else {
-        transition.next()
       }
-    },
+    }
 
-    canReuse: () => false
+    // canReuse: () => false
   },
-  ready: function () {
-    console.log('Call ready ' + this.id)
-    if (this.id === null) {
-      console.log('Should redirect')
-      this.$router.go({ name: 'items' })
-    } else {
-      console.log('Fill the form')
-      document.querySelector('input[name=item]').value = this.id
+  methods: {
+    go_back: function () {
+      this.$route.router.go({ name: 'item', params: { id: this.item_id } })
     }
   }
 }
