@@ -8,6 +8,11 @@
             <label>Username</label>
             <input type="text" name="username" placeholder="First Name">
           </div>
+          <div class="field">
+            <!-- 后期替换成物品名 -->
+            <label>Item ID</label>
+            <input type="text" name="item" placeholder="Item">
+          </div>
           <div class="fields">
             <div class="eight wide field">
               <label>Wallet</label>
@@ -43,54 +48,59 @@
         </div>
       </div>
     </div>
-    <!--
-    <div class="row">
-      <div class="ui ten wide column">
-        <table class="ui compact green table">
-          <thead>
-            <tr>
-              <th colspan="3">Recent Orders</th>
-            </tr>
-            <tr>
-              <th>Item</th>
-              <th>Amount</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="order in orders">
-              <td class="six wide collapsing">{{ order.item }}</td>
-              <td class="four widecollapsing">{{ order.amount }}</td>
-              <td class="six wide collapsing">{{ order.time }}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th colspan="3">
-                <div class="ui right floated pagination menu">
-                  <a class="icon item">
-                    <i class="left chevron icon"></i>
-                  </a>
-                  <a class="item">1</a>
-                  <a class="item">2</a>
-                  <a class="item">3</a>
-                  <a class="item">4</a>
-                  <a class="icon item">
-                    <i class="right chevron icon"></i>
-                  </a>
-                </div>
-              </th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-    -->
   </div>
 </template>
 
 <script>
+// import $ from 'jquery'
+
 export default {
+  data: function () {
+    return {
+      id: this.id
+    }
+  },
+  vuex: {
+    getters: {
+      id: function (state) {
+        console.log('Get ID ' + state.current_item)
+        return state.current_item
+      }
+    }
+  },
+  router: {
+    canActivate: function (transition) {
+      console.log('Call canActivate' + this.id)
+      if (this.id === null) {
+        console.log('订单不存在，跳转到items页面')
+        transition.abort('订单不存在，跳转到items页面')
+      } else {
+        transition.next()
+      }
+    },
+
+    activate: function (transition) {
+      console.log('Call activate' + this.id)
+      if (this.id === null) {
+        console.log('订单不存在，跳转到items页面')
+        transition.redirect({ name: 'items' })
+      } else {
+        transition.next()
+      }
+    },
+
+    canReuse: () => false
+  },
+  ready: function () {
+    console.log('Call ready ' + this.id)
+    if (this.id === null) {
+      console.log('Should redirect')
+      this.$router.go({ name: 'items' })
+    } else {
+      console.log('Fill the form')
+      document.querySelector('input[name=item]').value = this.id
+    }
+  }
 }
 </script>
 

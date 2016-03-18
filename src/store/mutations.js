@@ -6,5 +6,9 @@ export default {
   },
   LOGOUT (state) {
     state.user = { logged_in: false }
+  },
+  SELECT_ITEM (state, id) {
+    console.log('MUTATION: SELECT ITEM ' + id)
+    state.current_item = id
   }
 }

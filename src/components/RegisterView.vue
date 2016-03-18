@@ -37,13 +37,7 @@
           <li v-show="!password_match">Please enter the same password as above.</li>
           </ul>
       </div>
-
-
     </form>
-
-    <div class="ui message">
-      New to us? <a href="#">Sign Up</a>
-    </div>
   </div>
 </div>
 </template>
@@ -106,18 +100,5 @@ export default {
 </script>
 
 <style lang="less">
-// .login.grid {
-//   margin-top: 15px;
-//   height: 80%;
-// }
-// .login {
-//   background: #eee;
 
-//   .image {
-//     // margin-top: -100px;
-//   }
-//   .column {
-//     max-width: 450px;
-//   }
-// }
 </style>

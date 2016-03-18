@@ -1,8 +1,14 @@
 <template>
-<div class="ui main container items">
-  <h1>Items List</h1>
-  <div class="ui special link cards">
-    <item-card :item.once="i" v-for="i in 10"></item-card>
+<div class="ui main centered equal width grid items">
+  <div class="row">
+    <h1>Items List</h1>
+  </div>
+  <div class="two column centered row">
+    <div class="twelve wide column">
+      <div class="ui special doubling four cards">
+        <item-card :item.once="i" v-for="i in 10"></item-card>
+      </div>
+    </div>
   </div>
 </div>
 </template>
@@ -19,15 +25,12 @@ export default {
   components: {
     ItemCard
   },
-  route: {
-    activate: ({ next }) => {
-      console.log('dimmer')
-      // 这里有问题！
+  ready: function () {
+    setTimeout(function () {
       $('.special.cards .image').dimmer({
         on: 'hover'
       })
-      next()
-    }
+    }, 1)
   }
 }
 </script>

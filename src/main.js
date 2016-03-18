@@ -55,7 +55,7 @@ router.map({
 })
 
 router.redirect({
-  '*': '/hello'
+  '*': '/home'
 })
 
 router.start(App, '[app]')

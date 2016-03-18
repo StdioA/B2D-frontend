@@ -1,5 +1,4 @@
 <template>
-<!-- <div> -->
   <!-- 这两个v-if 不知道该怎么改了…最外层套上div所有的样式都会出错，不知道为什么 -->
   <div class="ui fixed inverted menu" v-if="$route.name!=='homepage'">
     <div class="ui container">
@@ -50,7 +49,6 @@
       </div>
     </div>
   </div>
-<!-- </div> -->
 </template>
 
 <script>
