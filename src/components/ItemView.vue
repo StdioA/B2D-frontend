@@ -19,7 +19,7 @@
               <div class="ui big icon input">
                 <input class="amount" type="text" placeholder="Amount">
               </div>
-              <div class="ui button bottom attached orange labeled icon button"><i class="cart icon"></i> Buy</div>
+              <div class="ui button bottom attached orange labeled icon button" v-link="{ name: 'payment' }"><i class="cart icon"></i> Buy</div>
             </div>
           </div>
         </div>
