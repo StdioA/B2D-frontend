@@ -102,6 +102,8 @@ $(document).ready(function () {
 </script>
 
 <style lang="less">
+@import "../semantic/src/semantic";
+
 body {
   background: #eee;
 }
