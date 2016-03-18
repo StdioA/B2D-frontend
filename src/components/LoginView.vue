@@ -51,10 +51,26 @@ export default {
     }
   },
   vuex: {
+    getters: {
+      // 获取用户登录信息
+      logged_in: function (state) {
+        return state.user.logged_in
+      }
+    },
     actions: {
       // 局部action, 由于这个action只在login页面中使用，所以不需要注册到全局
       login: ({ dispatch }, user) => {
         dispatch('LOGIN', user)
+      }
+    }
+  },
+  route: {
+    data: function (transition) {
+      // 如果已登录，则跳转至items页面
+      if (this.logged_in) {
+        transition.redirect({ name: 'items' })
+      } else {
+        transition.next()
       }
     }
   },

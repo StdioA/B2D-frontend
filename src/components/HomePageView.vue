@@ -158,6 +158,16 @@ export default {
         return state.user
       }
     }
+  },
+  route: {
+    data: function (transition) {
+      // 若已登录且无?redirect=false则进行跳转
+      if ((this.user.logged_in === true) && (transition.to.query.redirect !== 'false')) {
+        transition.redirect({ name: 'items', query: {} })
+      } else {
+        transition.next()
+      }
+    }
   }
 }
 </script>

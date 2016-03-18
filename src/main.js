@@ -24,6 +24,10 @@ router.map({
     name: 'homepage',
     component: HomePageView
   },
+  '/home': {
+    name: 'homepage',
+    component: HomePageView
+  },
   '/login': {
     name: 'login',
     component: LoginView
