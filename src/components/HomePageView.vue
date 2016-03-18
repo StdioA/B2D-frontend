@@ -65,6 +65,19 @@
     </div>
   </div>
 
+  <div class="ui stripe segment homepage">
+    <div class="ui container">
+      <h1 class="ui center aligned header">The tools we use</h1>
+      <div class="center aligned row">
+        <div class="four wide column logo-list">
+          <a href="//vuejs.org" target="_blank" title="Atom">
+            <img class="other-logo" src="../assets/logos/vue.svg" alt="Atom icon">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="ui vertical stripe quote segment homepage">
     <div class="ui container">
       <h1 class="ui center aligned icon header group"><i class="circular users icon"></i> Group </h1>
@@ -250,8 +263,14 @@ export default {
       font-size: 1.5em;
     }
   }
-}
-.group.ui.icon.header {
-  margin-top: 2em!important;
+  .group.ui.icon.header {
+    margin-top: 2em!important;
+  }
+  .logo-list {
+    img {
+      width: 8em;
+      height: 8em;
+    }
+  }
 }
 </style>

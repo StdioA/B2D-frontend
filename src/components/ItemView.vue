@@ -19,7 +19,7 @@
               <div class="ui big icon input">
                 <input class="amount" type="text" placeholder="Amount">
               </div>
-              <div class="ui button bottom attached orange labeled icon button"><i class="cart icon"></i> Buy</div>
+              <div class="ui button bottom attached orange labeled icon button" @click="buy"><i class="cart icon"></i> Buy</div>
             </div>
           </div>
         </div>
@@ -27,6 +27,25 @@
     </div>
   </div>
 </template>
+
+<script>
+import { select_item } from '../store/actions'
+
+export default {
+  vuex: {
+    actions: {
+      select_item
+    }
+  },
+  methods: {
+    buy: function () {
+      // 记录当前item id
+      this.select_item(this.$route.params.id)
+      this.$router.go({ name: 'payment' })
+    }
+  }
+}
+</script>
 
 <style lang="less">
 .item {

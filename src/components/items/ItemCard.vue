@@ -1,10 +1,10 @@
 <template>
-<div class="special link card" v-for="i in 10">
+<div class="special link {{ color }} card">
   <div class="blurring dimmable image">
     <div class="ui dimmer">
       <div class="content">
         <div class="center">
-          <div class="ui inverted button">Buy Buy Buy</div>
+          <div class="ui inverted button" @click="buy">Buy Buy Buy</div>
         </div>
       </div>
     </div>
@@ -26,10 +26,44 @@
 </template>
 
 <script>
-// import $ from 'jquery'
+import { select_item } from '../../store/actions'
 
 export default {
+  data: function () {
+    return {
+      color: this.random_color()
+    }
+  },
   props: ['item'],
+  vuex: {
+    actions: {
+      select_item
+    }
+  },
+  methods: {
+    random_color: function () {
+      // Select a random color for the card
+      var colors = [
+        'red',
+        'orange',
+        'yellow',
+        'olive',
+        'green',
+        'teal',
+        'blue',
+        'violet',
+        'purple',
+        'pink',
+        'brown'
+      ]
+      return colors[Math.floor(Math.random() * (colors.length))]
+    },
+    buy: function () {
+      // 记录当前item id
+      this.select_item(this.item)
+      this.$router.go({ name: 'payment' })
+    }
+  },
   compiled: function () {
   }
 }

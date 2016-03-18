@@ -31,7 +31,7 @@
     </form>
 
     <div class="ui message">
-      New to us? <a href="#">Sign Up</a>
+      New to us? <a v-link="{ name: 'register' }">Sign Up</a>
     </div>
   </div>
 </div>
@@ -65,7 +65,7 @@ export default {
       // 用户登录认证逻辑
       if (username.trim() && username === password) {
         this.login({username: username})
-        this.$router.go({name: 'homepage'})
+        this.$router.go({name: 'items'})
       } else {
         this.login_status.failed = true
         this.login_status.message = 'Incorrect username or password.'
@@ -76,13 +76,13 @@ export default {
 </script>
 
 <style lang="less">
-.login.grid {
-  margin-top: 15px;  
-  height: 80%;
-}
 .login {
   background: #eee;
 
+  &.grid {
+    margin-top: 15px;  
+    height: 80%;
+  }
   .image {
     // margin-top: -100px;
   }

@@ -13,6 +13,7 @@ export default {
       }
     }
   },
+  // 改！
   methods: {
     do_logout: function () {
       this.logout()
