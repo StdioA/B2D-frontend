@@ -12,6 +12,8 @@
             <!-- 后期替换成物品名 -->
             <label>Item ID</label>
             <input type="text" name="item" placeholder="Item" v-model="item_id">
+            <label>Quantity</label>
+            <input type="text" name="quantity" placeholder="Item" v-model="quantity">
           </div>
           <div class="fields">
             <div class="eight wide field">
@@ -57,13 +59,19 @@
 export default {
   data: function () {
     return {
-      id: this.id
+      id: this.id,
+      quantity: 1
     }
   },
   vuex: {
     getters: {
       item_id: (state) => state.current_item,
       logged_in: (state) => state.user.logged_in
+    }
+  },
+  methods: {
+    go_back: function () {
+      this.$route.router.go({ name: 'item', params: { id: this.item_id } })
     }
   },
   route: {
@@ -73,13 +81,7 @@ export default {
         transition.redirect({ name: 'items' })
       }
     }
-
     // canReuse: () => false
-  },
-  methods: {
-    go_back: function () {
-      this.$route.router.go({ name: 'item', params: { id: this.item_id } })
-    }
   }
 }
 </script>

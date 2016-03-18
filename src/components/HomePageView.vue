@@ -21,9 +21,6 @@
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
   <a class="active item">Home</a>
-  <a class="item">Work</a>
-  <a class="item">Company</a>
-  <a class="item">Careers</a>
   <a class="item">Login</a>
   <a class="item">Signup</a>
 </div>
@@ -72,6 +69,18 @@
         <div class="four wide column logo-list">
           <a href="//vuejs.org" target="_blank" title="Atom">
             <img class="other-logo" src="../assets/logos/vue.svg" alt="Atom icon">
+          </a>
+          <a href="//vuejs.org" target="_blank" title="Atom">
+            <img class="other-logo" src="../assets/logos/webpack.svg" alt="Atom icon">
+          </a>
+          <a href="//nodejs.org" target="_blank" title="Atom">
+            <img class="other-logo" src="../assets/logos/nodejs.png" alt="Atom icon">
+          </a>
+          <a href="//npmjs.com" target="_blank" title="Atom">
+            <img class="other-logo" src="../assets/logos/npm-logo.png" alt="Atom icon">
+          </a>
+          <a href="//semantic-ui.com" target="_blank" title="Atom">
+            <img class="other-logo" src="../assets/logos/semantic.png" alt="Atom icon">
           </a>
         </div>
       </div>

@@ -4,14 +4,14 @@
       <div class="eight wide column">
         <h1>User Profile</h1>
         <div class="ui form">
-          <div class="disabled field">
+          <div class="field">
             <label>Username</label>
-            <input type="text" name="username" placeholder="First Name">
+            <p type="text" name="username">{{user}}</p>
           </div>
           <div class="fields">
             <div class="eight wide field">
               <label>Wallet</label>
-              <input type="text" name="wallet" placeholder="Wallet">
+              <p type="text" name="wallet" class="ui header blue" placeholder="Wallet">{{balance}}<span><i class="euro icon"></i></span></p>
             </div>
             <div class="four wide field">
               <div class="field">
@@ -101,7 +101,9 @@ export default {
           amount: 3,
           time: 'time3'
         }
-      ]
+      ],
+      user: 'Nobody',
+      balance: 0
     }
   }
 }

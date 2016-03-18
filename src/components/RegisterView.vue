@@ -62,16 +62,6 @@ export default {
       }
     }
   },
-  route: {
-    data: function (transition) {
-      // 如果已登录，则跳转至items页面
-      if (this.logged_in) {
-        transition.redirect({ name: 'items' })
-      } else {
-        transition.next()
-      }
-    }
-  },
   computed: {
     password_match: function () {
       return !this.password_r || (this.password === this.password_r)
@@ -105,6 +95,16 @@ export default {
     //     this.login_status.message = 'Incorrect username or password.'
     //   }
     // }
+  },
+  route: {
+    data: function (transition) {
+      // 如果已登录，则跳转至items页面
+      if (this.logged_in) {
+        transition.redirect({ name: 'items' })
+      } else {
+        transition.next()
+      }
+    }
   }
 }
 </script>

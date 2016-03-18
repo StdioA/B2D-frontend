@@ -26,11 +26,11 @@ export default {
     ItemCard
   },
   ready: function () {
-    setTimeout(function () {
+    $.ready(function () {
       $('.special.cards .image').dimmer({
         on: 'hover'
       })
-    }, 1)
+    })
   }
 }
 </script>
