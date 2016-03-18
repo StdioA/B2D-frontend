@@ -19,14 +19,14 @@
 </div> -->
 
 <!-- Sidebar Menu -->
-<!-- <div class="ui vertical inverted sidebar menu">
+<div class="ui vertical inverted sidebar menu">
   <a class="active item">Home</a>
   <a class="item">Work</a>
   <a class="item">Company</a>
   <a class="item">Careers</a>
   <a class="item">Login</a>
   <a class="item">Signup</a>
-</div> -->
+</div>
 
 
 <!-- Page Contents -->
@@ -35,14 +35,14 @@
 
     <div class="ui container">
       <div class="ui large secondary inverted pointing noborder menu">
-        <!-- <a class="toc item">
+        <a class="toc item">
           <i class="sidebar icon"></i>
-        </a> -->
+        </a>
         <a v-link="{ name: 'homepage' }" class="active item">Home</a>
         <a v-link="{ name: 'items' }" class="item">Item List</a>
         <div v-if="!user.logged_in" class="right item">
-            <a v-link="{ name: 'login' }" class="ui inverted button">Log in</a>
-            <a v-link="{ name: 'register' }"class="ui inverted button">Sign Up</a>
+          <a v-link="{ name: 'login' }" class="ui inverted button">Log in</a>
+          <a v-link="{ name: 'register' }"class="ui inverted button">Sign Up</a>
         </div>
         <div v-else class="ui right simple dropdown item" >
           {{ user.username }} <i class="dropdown icon"></i>
@@ -56,82 +56,85 @@
 
     <div class="ui text container">
       <h1 class="ui inverted header">
-      Buy2Die
+        Buy2Die
       </h1>
       <h2>Buy whatever you want when you want buy!</h2>
       <a v-link="{ name: 'login' }">
         <div class="ui huge primary button">买买买<i class="right arrow icon"></i></div>
       </a>
     </div>
+  </div>
 
+  <div class="ui vertical stripe quote segment homepage">
+    <div class="ui container">
+      <h1 class="ui center aligned icon header group"><i class="circular users icon"></i> Group </h1>
+      <div class="ui equal width stackable internally celled grid">
+        <div class="center aligned row">
+          <div class="column">
+            <h3>
+              <a href="https://github.com/phoenixe-nuaa/B2D-frontend/">
+                Front-end <i class="github icon"></i>
+              </a>
+            </h3>
+            <p>phoenixe-nuaa ---- geekinglcq</p>
+          </div>
+          <div class="column">
+            <h3>
+              <a href="https://github.com/geekinglcq/Buy2Die">
+                Back-end <i class="github icon"></i>
+              </a>
+            </h3>
+            <p>Alexandre Berthault ---- Alexandre Babaorum</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="ui vertical stripe segment">
-  <div class="ui middle aligned stackable grid container">
-    <div class="row">
-    <div class="eight wide column">
-      <h3 class="ui header">We use vue.js</h3>
-      <h3 class="ui header">We Make Bananas That Can Dance</h3>
-      <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
-    </div>
-    <div class="six wide right floated column">
-      <img src="../assets/logos/vue.svg" class="ui middle image">
-    </div>
-    </div>
-  </div>
-  </div>
-  <div class="row">
-    <h1 class="ui center aligned icon header"><i class="circular users icon"></i> Group </h1>
-  </div>
-  <div class="ui vertical stripe quote segment homepage">
-
-  <div class="ui equal width stackable internally celled grid">
-    <div class="center aligned row">
-
-    <div href="https://github.com/phoenixe-nuaa/B2D-frontend/"class="column">
-      <h3> <a href="https://github.com/phoenixe-nuaa/B2D-frontend/"> Front-end <img src="../assets/github.png"></a></h3>
-      <p>phownixe-nuaa ---- geekinglcq</p>
-    </div>
-    <div class="column">
-      <h3> <a href="https://github.com/geekinglcq/Buy2Die">Back-end <img src="../assets/github.png"></a></h3>
-      <p>Alexandre Berthault ---- Alexandre Babaorum   </p>
-    </div>
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">We use vue.js</h3>
+          <h3 class="ui header">We Make Bananas That Can Dance</h3>
+          <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
+        </div>
+        <div class="six wide right floated column">
+          <img src="../assets/logos/vue.svg" class="ui middle image">
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-
-
 
   <div class="ui inverted vertical footer segment">
-  <div class="ui container">
-    <div class="ui stackable inverted divided equal height stackable grid">
-    <div class="three wide column">
-      <h4 class="ui inverted header">买买买</h4>
-      <div class="ui inverted link list">
-      <a href="#" class="item">买买买</a>
-      <a href="#" class="item">买买买</a>
-      <a href="#" class="item">买买买</a>
-      <a href="#" class="item">买买买</a>
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">买买买</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">买买买</a>
+            <a href="#" class="item">买买买</a>
+            <a href="#" class="item">买买买</a>
+            <a href="#" class="item">买买买</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">买买买</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">买买买</a>
+            <a href="#" class="item">买买买</a>
+            <a href="#" class="item">买买买</a>
+            <a href="#" class="item">买买买</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">买！</h4>
+          <p>Extra space for 买买买</p>
+        </div>
       </div>
     </div>
-    <div class="three wide column">
-      <h4 class="ui inverted header">买买买</h4>
-      <div class="ui inverted link list">
-      <a href="#" class="item">买买买</a>
-      <a href="#" class="item">买买买</a>
-      <a href="#" class="item">买买买</a>
-      <a href="#" class="item">买买买</a>
-      </div>
-    </div>
-    <div class="seven wide column">
-      <h4 class="ui inverted header">买！</h4>
-      <p>Extra space for 买买买</p>
-    </div>
-    </div>
-  </div>
   </div>
 </div>
-
 </template>
 
 <script>
@@ -179,6 +182,7 @@ export default {
       margin-bottom: 0em;
       font-size: 4em;
       font-weight: normal;
+
     }
     h2 {
       font-size: 1.7em;
@@ -246,5 +250,8 @@ export default {
       font-size: 1.5em;
     }
   }
+}
+.group.ui.icon.header {
+  margin-top: 2em!important;
 }
 </style>

@@ -1,27 +1,36 @@
 <template>
-<div class="ui main container items ">
+<div class="ui main container items">
   <h1>Items List</h1>
-  <div class="ui link cards">
-    <div class="link card" v-for="i in 10">
-      <div class="image">
-          <img src="../assets/HDMI_hdmi2.svg">
-      </div>
-      <div class="content">
-        <a v-link="{ name:'item', params: { id: i } }"
-            class="header">HDMI Cable</a>
-        <div class="meta">
-          <a>Electronic</a>
-        </div>
-        <div class="description">A HDMI cable in super high quality.</div>
-      </div>
-      <div class="extra content">
-        <span class="right floated"> Published @ Mar. 17th </span>
-        <span><i class="euro icon"></i> 5 </span>
-      </div>
-    </div>
+  <div class="ui special link cards">
+    <item-card :item.once="i" v-for="i in 10"></item-card>
   </div>
 </div>
 </template>
+
+<script>
+import $ from 'jquery'
+import jQuery from 'jquery'
+window.jQuery = jQuery
+require('../semantic/dist/semantic.js')
+
+import ItemCard from './items/ItemCard'
+
+export default {
+  components: {
+    ItemCard
+  },
+  route: {
+    activate: ({ next }) => {
+      console.log('dimmer')
+      // 这里有问题！
+      $('.special.cards .image').dimmer({
+        on: 'hover'
+      })
+      next()
+    }
+  }
+}
+</script>
 
 <style lang="less">
 .ui.menu .item img.logo {
@@ -37,5 +46,3 @@
 }
 
 </style>
-<script>
-</script>

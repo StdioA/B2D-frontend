@@ -30,10 +30,12 @@
         <div class="ui fluid large teal submit button" @click="try_login">Register</div>
       </div>
       <div class="ui error message" v-show="!password_length || !password_complex || !password_match || !username_legal">
-        <p v-show="!username_legal">Username contain invalid characters.</p>
-        <p v-show="!password_length">Password must be at least 6 characters.</p>
-        <p v-show="!password_complex">Sorry, your password is too weak. Use a combination of numeric and characters to increase password strength.</p>
-        <p v-show="!password_match">Please enter the same password as above.</p>
+        <ul class="list">
+          <li v-show="!username_legal">Username contain invalid characters.</li>
+          <li v-show="!password_length">Password must be at least 6 characters.</li>
+          <li v-show="!password_complex">Sorry, your password is too weak. Use a combination of numeric and characters to increase password strength.</li>
+          <li v-show="!password_match">Please enter the same password as above.</li>
+          </ul>
       </div>
 
 
@@ -74,7 +76,7 @@ export default {
       return this.password_length && this.password_complex
     },
     password_length: function () {
-      return this.password.length > 5
+      return (this.password.length === 0) || (this.password.length > 5)
     },
     password_complex: function () {
       var patrn = /^(?:\d+|[a-zA-Z]+|[!@#$%^&*]+)$/

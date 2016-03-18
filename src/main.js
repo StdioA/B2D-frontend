@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Vuex from 'vuex'
-import App from './components/App'
 
+import App from './components/App'
 // import the views
 import HomePageView from './components/HomePageView'
 import LoginView from './components/LoginView'
