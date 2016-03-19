@@ -1,5 +1,5 @@
 <template>
-<div class="ui main centered equal width grid items">
+<div class="ui main centered equal width grid items segment" :class="{ 'loading': $loadingRouteData }">
   <div class="row">
     <h1>Items List</h1>
   </div>
@@ -52,14 +52,23 @@ export default {
   },
   route: {
     // 应该在data钩子里异步载入
-  },
-  ready: function () {
-    this.add_items(this.items)
-    setTimeout(function () {
-      $('.special.cards .image').dimmer({
-        on: 'hover'
-      })
-    }, 1)
+    data: function (transition) {
+      this.add_items(this.items)
+      setTimeout(function () {
+        $('.special.cards .image').dimmer({
+          on: 'hover'
+        })
+        transition.next({
+        })
+      }, 1000)
+    }
+  // ready: function () {
+  //   this.add_items(this.items)
+  //   setTimeout(function () {
+  //     $('.special.cards .image').dimmer({
+  //       on: 'hover'
+  //     })
+  //   }, 1000)
     // $.ready(function () {
     //   console.log('ready')
     //   $('.special.cards .image').dimmer({

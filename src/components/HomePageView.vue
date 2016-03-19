@@ -57,7 +57,7 @@
       </h1>
       <h2>Buy whatever you want when you want buy!</h2>
       <a v-link="{ name: 'login' }">
-        <div class="ui huge primary button">买买买<i class="right arrow icon"></i></div>
+        <div class="ui huge primary button">Buy now!<i class="right arrow icon"></i></div>
       </a>
     </div>
   </div>
@@ -96,7 +96,7 @@
         </div>
       </div>
       <div class="centered row">
-        <div class="seven wide column logo-list">
+        <div class="eight wide column logo-list">
           <a href="//nodejs.org" target="_blank" title="Node.js">
             <img class="tools-logo" src="../assets/logos/nodejs.png" alt="node icon">
           </a>
@@ -111,6 +111,8 @@
           </a>
           <a href="//semantic-ui.com" target="_blank" title="Semantic UI">
             <img class="tools-logo" src="../assets/logos/semantic.png" alt="semantic icon">
+          <a href="//quip.com" target="_blank" title="quip">
+            <img class="tools-logo" src="../assets/logos/quip.png" alt="semantic icon">
           </a>
         </div>
       </div>
