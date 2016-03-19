@@ -6,21 +6,39 @@
         <div class="ui form">
           <div class="field">
             <label>Username</label>
-            <p class="ui header" name="username">{{ user.username }}</p>
+            <p class="ui confirmed input" name="username">{{ user.username }}</p>
           </div>
           <div class="field">
             <!-- 后期替换成物品名 -->
-            <label>Item ID</label>
-            <input type="text" name="item" placeholder="Item" v-model="item_id">
-            <label>Quantity</label>
-            <input type="text" name="quantity" placeholder="Item" v-model="quantity">
+            <label>Item</label>
+            <p name="item" class="ui confirmed input">{{ item.name }}</p>
           </div>
           <div class="fields">
-            <div class="eight wide field">
-              <label>Wallet</label>
-              <input type="text" name="wallet" placeholder="Wallet">
+            <div class="field">
+              <label>Price</label>
+              <div class="ui confirmed input">{{ item.price }}</div>
             </div>
+            <div class="operator mutiply">*</div>
+            <div class="field">
+              <!-- <input type="text" name="item" placeholder="Item" v-model="item_id"> -->
+              <label>Quantity</label>
+              <input type="text" name="quantity" placeholder="Item" v-model="quantity">
+            </div>
+            <div class="operator equal">=</div>
+            <div class="field">
+              <label>Total cost</label>
+              <div class="ui confirmed input">{{ total_cost }}</div>
+            </div>
+            <div class="operator euro">€</div>
+          </div>
+          <div class="fields">
             <div class="four wide field">
+              <label>Wallet</label>
+              <!-- <input type="text" name="wallet" placeholder="Wallet"> -->
+              <div class="ui confirmed input">0</div>
+            </div>
+          </div>
+            <!-- <div class="four wide field">
               <div class="field">
                 <label>Charge Amount</label>
                 <input type="text" name="charge" placeholder="Amount">
@@ -30,8 +48,7 @@
               <div class="ui button blue charge">
                 Charge
               </div>
-            </div>
-          </div>
+            </div> -->
           <div class="field">
             <label>Address</label>
             <textarea name="address" cols="30" rows="4"></textarea>
@@ -59,15 +76,21 @@
 export default {
   data: function () {
     return {
-      // id: this.id,
+      item: {},
       quantity: 1
     }
   },
   vuex: {
     getters: {
+      items: (state) => state.items,
       item_id: (state) => state.current_item,
       logged_in: (state) => state.user.logged_in,
       user: (state) => state.user
+    }
+  },
+  computed: {
+    total_cost: function () {
+      return this.item.price * this.quantity
     }
   },
   methods: {
@@ -77,10 +100,18 @@ export default {
   },
   route: {
     data: function (transition) {
-      if (this.item_id === undefined) {
+      var item_id = this.item_id
+      if (item_id === undefined) {
         transition.redirect({ name: 'items' })
       } else if (this.logged_in === false) {
         transition.redirect({ name: 'login' })
+      } else {
+        var item = this.items[item_id]
+        if (item === undefined) {
+          transition.redirect({ name: 'item', params: { id: item_id } })
+        } else {
+          transition.next({ item: item })
+        }
       }
     }
     // canReuse: () => false
@@ -88,5 +119,29 @@ export default {
 }
 </script>
 
-<style lang='less'>
+<style lang='less' scoped>
+.ui.confirmed.input {
+  margin-top: 0;
+  /*height: 13px + 0.67861429em * 2;*/
+  padding: 0.6em 1em;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.28571429rem;
+}
+.operator {
+  /*margin-top: 29px;*/
+  font-size: 3em;
+  flex: 0 1 auto;
+  pointer-events: none;
+
+  &.mutiply {
+    margin-top: 41px;
+  }
+  &.equal {
+    margin-top: 30px;
+  }
+  &.euro {
+    margin-top: 32px;
+    font-size: 2em;
+  }
+}
 </style>

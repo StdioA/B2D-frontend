@@ -10,8 +10,12 @@ export default {
   SELECT_ITEM (state, id) {
     state.current_item = id
   },
-  ADD_ITEM (state, items) {
-    // state.items = state.items.comcat(items)
-    state.items = items
+  ADD_ITEMS (state, items) {
+    for (let item of items) {
+      state.items[item.id] = item
+    }
+  },
+  ADD_ITEM (state, item) {
+    state.items[item.id] = item
   }
 }

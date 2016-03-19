@@ -12,16 +12,16 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="username" placeholder="Username" v-model="username" lazy>
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password" @keyup.enter="try_login">
+            <input type="password" name="password" placeholder="Password" v-model="password" lazy @keyup.enter="try_login">
           </div>
         </div>
-        <div class="ui fluid large teal submit button" @click="try_login">Login</div>
+        <div class="ui fluid large teal submit button" :class="{'loading':trying}" @click="try_login">Login</div>
       </div>
 
       <div class="ui error message" v-show="login_status.failed" transition='fade'>
@@ -38,8 +38,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
-
 export default {
   name: 'LoginView',
   data: () => {
@@ -47,7 +45,10 @@ export default {
       login_status: {
         failed: false,
         message: ''
-      }
+      },
+      trying: false,
+      username: '',
+      password: ''
     }
   },
   vuex: {
@@ -76,16 +77,22 @@ export default {
   },
   methods: {
     try_login: function (e) {
-      var username = $('input[name=username]').val()
-      var password = $('input[name=password]').val()
+      var username = this.username
+      var password = this.password
+      var app = this
+
       // 用户登录认证逻辑
-      if (username.trim() && username === password) {
-        this.login({username: username})
-        this.$router.go({name: 'items'})
-      } else {
-        this.login_status.failed = true
-        this.login_status.message = 'Incorrect username or password.'
-      }
+      app.trying = true
+      setTimeout(function () {
+        app.trying = false
+        if (username.trim() && username === password) {
+          app.login({username: username})
+          app.$router.go({name: 'items'})
+        } else {
+          app.login_status.failed = true
+          app.login_status.message = 'Incorrect username or password.'
+        }
+      }, 1000)
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="ui main container items centered grid profile">
+  <div class="ui main container items centered grid">
     <div class="row">
       <div class="ten wide column">
         <h1>User Profile</h1>
@@ -125,18 +125,13 @@ export default {
 }
 </script>
 
-<style lang='less'>
-.profile {
-  .charge {
-    margin-top: 24px;
-  }
-  .form {
-    .ui.header {
-      margin-top: 0.65em;
-    }
-  }
-  .ui.loading.segment:before {
-    background: rgba(238, 238, 238, 0.8);
+<style lang='less' scoped>
+.charge {
+  margin-top: 24px;
+}
+.form {
+  .ui.header {
+    margin-top: 0.65em;
   }
 }
 </style>

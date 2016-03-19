@@ -27,7 +27,7 @@
             <input type="password" name="repeat_password" v-model="password_r" placeholder="Repeat Password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button" @click="try_login">Register</div>
+        <div class="ui fluid large teal submit button" :class="{'loading':trying}" @click="try_login">Register</div>
       </div>
       <div class="ui error message" v-show="!password_length || !password_complex || !password_match || !username_legal">
         <ul class="list">
@@ -51,7 +51,8 @@ export default {
     return {
       password: '',
       password_r: '',
-      username: ''
+      username: '',
+      trying: false
     }
   },
   vuex: {
@@ -84,17 +85,9 @@ export default {
     }
   },
   methods: {
-    // try_login: function (e) {
-    //   var username = $('input[name=username]').val()
-    //   var password = $('input[name=password]').val()
-    //   // 用户登录认证逻辑
-    //   if (username.trim() && username === password) {
-    //     this.login({username: username})
-    //   } else {
-    //     this.login_status.failed = true
-    //     this.login_status.message = 'Incorrect username or password.'
-    //   }
-    // }
+    try_register: function (e) {
+      // 注册逻辑
+    }
   },
   route: {
     data: function (transition) {

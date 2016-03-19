@@ -91,6 +91,10 @@ $(document).ready(function () {
 </script>
 
 <style lang="less">
+@import "../semantic/src/semantic";
+
+@background-color: #eee;
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -118,18 +122,23 @@ $(document).ready(function () {
   }
 }
 
-@import "../semantic/src/semantic";
 
 body {
-  background: #eee;
+  background: @background-color;
 
   &.pushable {
-    background: #eee !important;
+    background: @background-color !important;
   }
+}
+
+.ui.main.container {
+  min-height: 73%;
 }
 
 .ui.footer.segment {
   padding: 2em 0em;
 }
-
+.ui.loading.segment:before {
+  background: fadeout(@background-color, 20%);
+}
 </style>

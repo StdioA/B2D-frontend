@@ -1,29 +1,31 @@
 <template>
-  <div class="ui main container center aligned two column very relaxed stackable divided grid">
-    <div class="eight wide column">
-      <div class="row">
-        <img class="ui fluid image" src="{{ item.picture_url }}">
+  <div class="ui main container">
+    <div class="ui basic segment" :class="{ 'loading': $loadingRouteData }">
+    <div class="ui center aligned two column very relaxed stackable divided grid">
+      <div class="eight wide column">
+        <div class="row">
+          <img class="ui fluid image" src="{{ item.picture_url }}">
+        </div>
       </div>
-    </div>
-    <!-- <div class="ui vertical divider"></div> -->
-    <div class="six wide middle aligned left aligned column">
-      <div class="row">
-        <div class="container">
-          <div class="ui fluid card">
-            <!-- <div class="image"></div> -->
-            <div class="content">
-              <h1 class="ui huge header dividing">{{ item.name }}</h1>
-              <div class="description">{{ item.description }}</div>
-              <h2 class="ui large header red">{{ item.price }}<span><i class="euro icon"></i></span></h2>
-              <h2 class="ui large header green">{{ item.instock ? 'In stock' : 'Out of stock' }}</h2>
-              <div class="ui big icon input">
-                <input class="amount" type="text" placeholder="Amount">
+      <div class="six wide middle aligned left aligned column">
+        <div class="row">
+          <div class="container">
+            <div class="ui fluid card">
+              <div class="content">
+                <h1 class="ui huge header dividing">{{ item.name }}</h1>
+                <div class="description">{{ item.description }}</div>
+                <h2 class="ui large header red">{{ item.price }}<span><i class="euro icon"></i></span></h2>
+                <h2 class="ui large header green">{{ item.instock ? 'In stock' : 'Out of stock' }}</h2>
+                <div class="ui big icon input">
+                  <input class="amount" type="text" placeholder="Amount">
+                </div>
+                <div class="ui button bottom attached orange labeled icon button" :class="{ 'disabled': !item.instock }" @click="buy"><i class="cart icon"></i> Buy</div>
               </div>
-              <div class="ui button bottom attached orange labeled icon button" :class="{ 'disabled': !item.instock }" @click="buy"><i class="cart icon"></i> Buy</div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -39,7 +41,11 @@ export default {
   },
   vuex: {
     actions: {
-      select_item
+      select_item,
+      add_item: function ({dispatch}, item) {
+        // 添加商品
+        dispatch('ADD_ITEM', item)
+      }
     },
     getters: {
       items: (state) => state.items
@@ -47,26 +53,32 @@ export default {
   },
   route: {
     data: function (transition) {
-      console.log('data called')
-      if (this.items.length === 0) {
-        transition.redirect({ name: 'items' })
-      } else {
-        var id = Number(transition.to.params.id)
-        var item
-        for (let i in this.items) {
-          console.log(this.items[i].id)
-          if (this.items[i].id === id) {
-            item = this.items[i]
-            console.log(item)
-            break
-          }
+      var id = Number(transition.to.params.id)
+      var item = this.items[id]
+      if (item === undefined) {
+        // 异步加载item
+        item = {
+          id: id,
+          instock: true,
+          price: 5,
+          name: 'HDMI Cable #' + id,
+          category: 'electronic',
+          description: 'A HDMI cable in super high quality.',
+          publish_time: 'Mar. 19th',
+          picture_url: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
         }
+        this.add_item(item)
+        setTimeout(function () {
+          transition.next({
+            item: item
+          })
+        }, 2000)
+        // transition.redirect({ name: 'items' })
+      } else {
+        console.log('item get')
         // var item = this.items.filter(function (item) {
-        //   console.log(id)
         //   return item.id === id
         // })[0]
-        console.log(id)
-        console.log(this.items)
         transition.next({
           item: item
         })
