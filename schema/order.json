@@ -1,0 +1,48 @@
+
+/***
+* orderTime:2016/03/20/10:12
+*/
+{
+ "$schema": "http://json-schema.org/draft-04/schema#",
+ "id": "http://jsonschema.net",
+ "type": "object",
+ "properties": {
+   "orderId": {
+     "id": "orderId",
+     "type": "string"
+   },
+   "orderUserId": {
+     "id": "orderUserId",
+     "type": "string"
+   },
+   "orderItemId": {
+     "id": "orderItemId",
+     "type": "string"
+   },
+   "orderQuantity": {
+     "id": "orderQuantity",
+     "type": "integer"
+   },
+   "orderPrice": {
+     "id": "orderPrice",
+     "type": "integer"
+   },
+   "orderAddress": {
+     "id": "orderAddress",
+     "type": "string"
+   },
+   "orderTime": {
+     "id": "orderTime",
+     "type": "string"
+   }
+ },
+ "required": [
+   "orderId",
+   "orderUserId",
+   "orderItemId",
+   "orderQuantity",
+   "orderPrice",
+   "orderAddress",
+   "orderTime"
+ ]
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "itemId": {
+      "id": "itemId",
+      "type": "string"
+    },
+    "itemName": {
+      "id": "itemName",
+      "type": "string"
+    },
+    "itemAmount": {
+      "id": "itemAmount",
+      "type": "integer"
+    },
+    "itemPrice": {
+      "id": "itemPrice",
+      "type": "number"
+    },
+    "itemClass": {
+      "id": "itemClass",
+      "type": "string"
+    },
+    "itemDes": {
+      "id": "itemDes",
+      "type": "string"
+    },
+    "itemPublish": {
+      "id": "itemPublish",
+      "type": "string"
+    }
+  },
+  "required": [
+    "itemId",
+    "itemName",
+    "itemAmount",
+    "itemPrice",
+  ]
+}

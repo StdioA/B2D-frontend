@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "id": "userId",
+      "type": "string"
+    },
+    "userName": {
+      "id": "userName",
+      "type": "string"
+    },
+    "userPwd": {
+      "id": "userPwd",
+      "type": "string"
+    },
+    "userAddress": {
+      "id": "userAddress",
+      "type": "string"
+    },
+    "balance": {
+      "id": "balance",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "userId",
+    "userName",
+    "userAddress",
+    "balance"
+  ]
+}
