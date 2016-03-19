@@ -19,14 +19,15 @@
     <div class="description">{{ item.description }}</div>
   </div>
   <div class="extra content">
-    <span class="right floated"> Published @ {{ item.published_time }}</span>
+    <span class="right floated"> Published @ {{ item.publish_time }}</span>
     <span><i class="euro icon"></i> {{ item.price }} </span>
   </div>
 </div>
 </template>
 
 <script>
-import { select_item } from '../../store/actions'
+// import { select_item } from '../../store/actions'
+import { make_order } from '../../store/actions'
 
 export default {
   data: function () {
@@ -37,7 +38,8 @@ export default {
   props: ['item'],
   vuex: {
     actions: {
-      select_item
+      // select_item
+      make_order
     }
   },
   methods: {
@@ -60,7 +62,11 @@ export default {
     },
     buy: function () {
       // 记录当前item id
-      this.select_item(this.item.id)
+      // this.select_item(this.item.id)
+      this.make_order({
+        item_id: this.item.id,
+        quantity: 1
+      })
       this.$router.go({ name: 'payment' })
     }
   },

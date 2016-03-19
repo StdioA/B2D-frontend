@@ -17,7 +17,7 @@
                 <h2 class="ui large header red">{{ item.price }}<span><i class="euro icon"></i></span></h2>
                 <h2 class="ui large header green">{{ item.instock ? 'In stock' : 'Out of stock' }}</h2>
                 <div class="ui big icon input">
-                  <input class="amount" type="text" placeholder="Amount">
+                  <input class="amount" type="text" placeholder="Amount" v-model="quantity">
                 </div>
                 <div class="ui button bottom attached orange labeled icon button" :class="{ 'disabled': !item.instock }" @click="buy"><i class="cart icon"></i> Buy</div>
               </div>
@@ -31,17 +31,20 @@
 </template>
 
 <script>
-import { select_item } from '../store/actions'
+// import { select_item } from '../store/actions'
+import { make_order } from '../store/actions'
 
 export default {
   data: function () {
     return {
-      item: {}
+      item: {},
+      quantity: 1
     }
   },
   vuex: {
     actions: {
-      select_item,
+      make_order,
+
       add_item: function ({dispatch}, item) {
         // 添加商品
         dispatch('ADD_ITEM', item)
@@ -75,7 +78,7 @@ export default {
         }, 2000)
         // transition.redirect({ name: 'items' })
       } else {
-        console.log('item get')
+        // console.log('item get')
         // var item = this.items.filter(function (item) {
         //   return item.id === id
         // })[0]
@@ -85,15 +88,19 @@ export default {
       }
     },
     activate: function (transition) {
-      console.log('activate called')
+      // console.log('activate called')
       transition.next()
     }
   },
   methods: {
     buy: function () {
       // 记录当前item id
-      console.log('Buy ' + this.item.id)
-      this.select_item(this.item.id)
+      // console.log('Buy ' + this.item.id)
+      // this.select_item(this.item.id)
+      this.make_order({
+        item_id: this.item.id,
+        quantity: this.quantity
+      })
       this.$router.go({ name: 'payment' })
     }
   }

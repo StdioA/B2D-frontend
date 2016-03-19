@@ -7,9 +7,13 @@ export default {
   LOGOUT (state) {
     state.user = { logged_in: false }
   },
-  SELECT_ITEM (state, id) {
-    state.current_item = id
+  MAKE_ORDER (state, order) {
+    console.log('make_order: ' + JSON.stringify(order))
+    state.current_order = order
   },
+  // SELECT_ITEM (state, id) {
+  //   state.current_item = id
+  // },
   ADD_ITEMS (state, items) {
     for (let item of items) {
       state.items[item.id] = item

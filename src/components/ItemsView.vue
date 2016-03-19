@@ -45,8 +45,8 @@ export default {
   },
   vuex: {
     actions: {
-      add_items: ({ dispatch }, item) => {
-        dispatch('ADD_ITEM', item)
+      add_items: ({ dispatch }, items) => {
+        dispatch('ADD_ITEMS', items)
       }
     }
   },

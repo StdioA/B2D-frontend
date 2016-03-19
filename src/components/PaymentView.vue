@@ -83,7 +83,8 @@ export default {
   vuex: {
     getters: {
       items: (state) => state.items,
-      item_id: (state) => state.current_item,
+      // item_id: (state) => state.current_item,
+      current_order: (state) => state.current_order,
       logged_in: (state) => state.user.logged_in,
       user: (state) => state.user
     }
@@ -95,12 +96,12 @@ export default {
   },
   methods: {
     go_back: function () {
-      this.$route.router.go({ name: 'item', params: { id: this.item_id } })
+      this.$route.router.go({ name: 'item', params: { id: this.current_order.item_id } })
     }
   },
   route: {
     data: function (transition) {
-      var item_id = this.item_id
+      var item_id = this.current_order.item_id
       if (item_id === undefined) {
         transition.redirect({ name: 'items' })
       } else if (this.logged_in === false) {
@@ -110,7 +111,10 @@ export default {
         if (item === undefined) {
           transition.redirect({ name: 'item', params: { id: item_id } })
         } else {
-          transition.next({ item: item })
+          transition.next({
+            item: item,
+            quantity: this.current_order.quantity
+          })
         }
       }
     }
