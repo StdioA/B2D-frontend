@@ -122,6 +122,10 @@ $(document).ready(function () {
 
 body {
   background: #eee;
+
+  &.pushable {
+    background: #eee !important;
+  }
 }
 
 .ui.footer.segment {

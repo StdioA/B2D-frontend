@@ -8,19 +8,19 @@
         </div>
       </div>
     </div>
-    <img src="../../assets/HDMI_hdmi2.svg">
+    <img src="{{ item.picture_url }}">
   </div>
   <div class="content">
-    <a v-link="{ name:'item', params: { id: item } }"
-        class="header">HDMI Cable</a>
+    <a v-link="{ name:'item', params: { id: item.id } }"
+        class="header">{{ item.name }}</a>
     <div class="meta">
-      <a>Electronic</a>
+      <a>{{ item.category }}</a>
     </div>
-    <div class="description">A HDMI cable in super high quality.</div>
+    <div class="description">{{ item.description }}</div>
   </div>
   <div class="extra content">
-    <span class="right floated"> Published @ Mar. 17th </span>
-    <span><i class="euro icon"></i> 5 </span>
+    <span class="right floated"> Published @ {{ item.published_time }}</span>
+    <span><i class="euro icon"></i> {{ item.price }} </span>
   </div>
 </div>
 </template>
@@ -60,7 +60,7 @@ export default {
     },
     buy: function () {
       // 记录当前item id
-      this.select_item(this.item)
+      this.select_item(this.item.id)
       this.$router.go({ name: 'payment' })
     }
   },

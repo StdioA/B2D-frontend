@@ -59,7 +59,7 @@
 export default {
   data: function () {
     return {
-      id: this.id,
+      // id: this.id,
       quantity: 1
     }
   },
@@ -77,8 +77,10 @@ export default {
   },
   route: {
     data: function (transition) {
-      if (this.item_id === null || this.logged_in === false) {
+      if (this.item_id === undefined) {
         transition.redirect({ name: 'items' })
+      } else if (this.logged_in === false) {
+        transition.redirect({ name: 'login' })
       }
     }
     // canReuse: () => false

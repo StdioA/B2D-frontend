@@ -9,5 +9,9 @@ export default {
   },
   SELECT_ITEM (state, id) {
     state.current_item = id
+  },
+  ADD_ITEM (state, items) {
+    // state.items = state.items.comcat(items)
+    state.items = items
   }
 }

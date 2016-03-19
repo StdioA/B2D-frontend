@@ -98,19 +98,19 @@
       <div class="centered row">
         <div class="seven wide column logo-list">
           <a href="//nodejs.org" target="_blank" title="Node.js">
-            <img class="tools_logo" src="../assets/logos/nodejs.png" alt="Atom icon">
+            <img class="tools-logo" src="../assets/logos/nodejs.png" alt="node icon">
           </a>
           <a href="//npmjs.com" target="_blank" title="npm">
-            <img class="tools_logo" src="../assets/logos/npm-logo.png" alt="Atom icon">
+            <img class="npm-logo" src="../assets/logos/npm-logo.svg" alt="npm icon">
           </a>
           <a href="//vuejs.org" target="_blank" title="Vue.js">
-            <img class="tools_logo" src="../assets/logos/vue.svg" alt="Atom icon">
+            <img class="tools-logo" src="../assets/logos/vue.svg" alt="vue icon">
           </a>
           <a href="//webpack.github.io" target="_blank" title="Webpack">
-            <img class="tools_logo" src="../assets/logos/webpack.svg" alt="Atom icon">
+            <img class="tools-logo" src="../assets/logos/webpack.svg" alt="webpack icon">
           </a>
           <a href="//semantic-ui.com" target="_blank" title="Semantic UI">
-            <img class="tools_logo" src="../assets/logos/semantic.png" alt="Atom icon">
+            <img class="tools-logo" src="../assets/logos/semantic.png" alt="semantic icon">
           </a>
         </div>
       </div>
@@ -186,7 +186,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .homepage {
   .noborder {
     border: none !important;
@@ -290,11 +290,16 @@ export default {
   .group.ui.icon.header {
     margin-top: 2em!important;
   }
+  @logo-height: 6em;
   .logo-list {
     img {
-      width: 6em;
-      height: 6em;
+      width: @logo-height;
+      height: @logo-height;
       margin: 0 1em;
+
+      &.npm-logo {
+        width: 1.84 * @logo-height;
+      }
     }
   }
 }
