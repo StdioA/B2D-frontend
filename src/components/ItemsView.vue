@@ -26,11 +26,17 @@ export default {
     ItemCard
   },
   ready: function () {
-    $.ready(function () {
+    setTimeout(function () {
       $('.special.cards .image').dimmer({
         on: 'hover'
       })
-    })
+    }, 1)
+    // $.ready(function () {
+    //   console.log('ready')
+    //   $('.special.cards .image').dimmer({
+    //     on: 'hover'
+    //   })
+    // })
   }
 }
 </script>

@@ -17,24 +17,15 @@
         <div class="menu">
           <a class="item" v-link="{ name: 'user' }">Profile</a>
           <a class="item" v-link="{ name: 'logout' }">Log out</a>
-          <!-- <div class="divider"></div> -->
-          <!-- <div class="header">Header Item</div> -->
-          <!-- <div class="item">
-            <i class="dropdown icon"></i>
-            Sub Menu
-            <div class="menu">
-              <a class="item" href="#">Link Item</a>
-              <a class="item" href="#">Link Item</a>
-            </div>
-          </div> -->
-          <!-- <a class="item" href="#">Link Item</a> -->
         </div>
       </div>
     </div>
   </div>
 
   <router-view
-    keep-alive>
+    keep-alive
+    transition="fade"
+    transition-mode="out-in">
   </router-view>
 
   <div class="ui vertical footer segment" v-if="$route.name!=='homepage'">
@@ -100,6 +91,33 @@ $(document).ready(function () {
 </script>
 
 <style lang="less">
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fade {
+  &-enter {
+    animation: fadeIn 0.3s;
+  }
+  &-leave {
+    animation: fadeOut 0.3s;
+  }
+}
+
 @import "../semantic/src/semantic";
 
 body {

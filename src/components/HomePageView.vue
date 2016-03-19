@@ -1,6 +1,6 @@
 <template>
 <!-- Following Menu -->
-<!-- <div class="ui large top fixed hidden menu homepage">
+<!-- <div class="ui large top fixed hidden menu">
   <div class="ui container">
   <a class="active item">Home</a>
   <a class="item">Work</a>
@@ -28,8 +28,8 @@
 
 <!-- Page Contents -->
 <div class="pusher homepage">
+<div class="ui segments">
   <div class="ui inverted vertical masthead center aligned segment">
-
     <div class="ui container">
       <div class="ui large secondary inverted pointing noborder menu">
         <a class="toc item">
@@ -62,32 +62,7 @@
     </div>
   </div>
 
-  <div class="ui stripe segment homepage">
-    <div class="ui container">
-      <h1 class="ui center aligned header">The tools we use</h1>
-      <div class="center aligned row">
-        <div class="four wide column logo-list">
-          <a href="//vuejs.org" target="_blank" title="Atom">
-            <img class="other-logo" src="../assets/logos/vue.svg" alt="Atom icon">
-          </a>
-          <a href="//vuejs.org" target="_blank" title="Atom">
-            <img class="other-logo" src="../assets/logos/webpack.svg" alt="Atom icon">
-          </a>
-          <a href="//nodejs.org" target="_blank" title="Atom">
-            <img class="other-logo" src="../assets/logos/nodejs.png" alt="Atom icon">
-          </a>
-          <a href="//npmjs.com" target="_blank" title="Atom">
-            <img class="other-logo" src="../assets/logos/npm-logo.png" alt="Atom icon">
-          </a>
-          <a href="//semantic-ui.com" target="_blank" title="Atom">
-            <img class="other-logo" src="../assets/logos/semantic.png" alt="Atom icon">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ui vertical stripe quote segment homepage">
+  <div class="ui vertical stripe quote segment">
     <div class="ui container">
       <h1 class="ui center aligned icon header group"><i class="circular users icon"></i> Group </h1>
       <div class="ui equal width stackable internally celled grid">
@@ -108,6 +83,35 @@
             </h3>
             <p>Alexandre Berthault ---- Alexandre Babaorum</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical segment">
+    <div class="ui grid">
+      <div class="ui center aligned row">
+        <div class="column">
+          <h1 class="ui header">The tools we use</h1>
+        </div>
+      </div>
+      <div class="centered row">
+        <div class="seven wide column logo-list">
+          <a href="//nodejs.org" target="_blank" title="Node.js">
+            <img class="tools_logo" src="../assets/logos/nodejs.png" alt="Atom icon">
+          </a>
+          <a href="//npmjs.com" target="_blank" title="npm">
+            <img class="tools_logo" src="../assets/logos/npm-logo.png" alt="Atom icon">
+          </a>
+          <a href="//vuejs.org" target="_blank" title="Vue.js">
+            <img class="tools_logo" src="../assets/logos/vue.svg" alt="Atom icon">
+          </a>
+          <a href="//webpack.github.io" target="_blank" title="Webpack">
+            <img class="tools_logo" src="../assets/logos/webpack.svg" alt="Atom icon">
+          </a>
+          <a href="//semantic-ui.com" target="_blank" title="Semantic UI">
+            <img class="tools_logo" src="../assets/logos/semantic.png" alt="Atom icon">
+          </a>
         </div>
       </div>
     </div>
@@ -156,6 +160,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 </template>
 
@@ -287,8 +292,9 @@ export default {
   }
   .logo-list {
     img {
-      width: 8em;
-      height: 8em;
+      width: 6em;
+      height: 6em;
+      margin: 0 1em;
     }
   }
 }

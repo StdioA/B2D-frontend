@@ -4,9 +4,9 @@
       <div class="eight wide column">
         <h1>Verify your order</h1>
         <div class="ui form">
-          <div class="disabled field">
+          <div class="field">
             <label>Username</label>
-            <input type="text" name="username" placeholder="First Name">
+            <p class="ui header" name="username">{{ user.username }}</p>
           </div>
           <div class="field">
             <!-- 后期替换成物品名 -->
@@ -66,7 +66,8 @@ export default {
   vuex: {
     getters: {
       item_id: (state) => state.current_item,
-      logged_in: (state) => state.user.logged_in
+      logged_in: (state) => state.user.logged_in,
+      user: (state) => state.user
     }
   },
   methods: {
@@ -76,7 +77,6 @@ export default {
   },
   route: {
     data: function (transition) {
-      console.log('login' + this.logged_in)
       if (this.item_id === null || this.logged_in === false) {
         transition.redirect({ name: 'items' })
       }

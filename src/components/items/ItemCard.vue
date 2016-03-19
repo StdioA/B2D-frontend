@@ -4,7 +4,7 @@
     <div class="ui dimmer">
       <div class="content">
         <div class="center">
-          <div class="ui inverted button" @click="buy">Buy now with 1-click</div>
+          <div class="ui inverted button" @click="buy">Buy now</div>
         </div>
       </div>
     </div>
