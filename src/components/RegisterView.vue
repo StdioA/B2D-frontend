@@ -27,7 +27,7 @@
             <input type="password" name="repeat_password" v-model="password_r" placeholder="Repeat Password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button" :class="{'loading':trying}" @click="try_login">Register</div>
+        <div class="ui fluid large teal submit button" :class="{'loading':trying}" @click="try_register">Register</div>
       </div>
       <div class="ui error message" v-show="!password_length || !password_complex || !password_match || !username_legal">
         <ul class="list">
@@ -43,62 +43,79 @@
 </template>
 
 <script>
-// import $ from 'jquery'
+ import $ from 'jquery'
 
 export default {
-  name: 'RegisterView',
-  data: () => {
-    return {
-      password: '',
-      password_r: '',
-      username: '',
-      trying: false
-    }
-  },
-  vuex: {
-    getters: {
-      // 获取用户登录信息
-      logged_in: function (state) {
-        return state.user.logged_in
-      }
-    }
-  },
-  computed: {
-    password_match: function () {
-      return !this.password_r || (this.password === this.password_r)
-    },
-    password_legal: function () {
-      return this.password_length && this.password_complex
-    },
-    password_length: function () {
-      return (this.password.length === 0) || (this.password.length > 5)
-    },
-    password_complex: function () {
-      var patrn = /^(?:\d+|[a-zA-Z]+|[!@#$%^&*]+)$/
-      if (!patrn.exec(this.password)) return true
-      else return false
-    },
-    username_legal: function () {
-      var patrn = /^([a-zA-Z0-9]|[._]){4,19}$/
-      if (!patrn.exec(this.username.toString)) return true
-      else return false
-    }
-  },
-  methods: {
-    try_register: function (e) {
+   name: 'RegisterView',
+   data: () => {
+     return {
+       password: '',
+       password_r: '',
+       username: '',
+       trying: false
+     }
+   },
+   vuex: {
+     getters: {
+       // 获取用户登录信息
+       logged_in: function (state) {
+         return state.user.logged_in
+       }
+     },
+     actions: {
+       // 局部action, 由于这个action只在login页面中使用，所以不需要注册到全局
+       login: ({ dispatch }, user) => {
+         dispatch('LOGIN', user)
+       }
+     }
+   },
+   computed: {
+     password_match: function () {
+       return !this.password_r || (this.password === this.password_r)
+     },
+     password_legal: function () {
+       return this.password_length && this.password_complex
+     },
+     password_length: function () {
+       return (this.password.length === 0) || (this.password.length > 5)
+     },
+     password_complex: function () {
+       var patrn = /^(?:\d+|[a-zA-Z]+|[!@#$%^&*]+)$/
+       if (!patrn.exec(this.password)) return true
+       else return false
+     },
+     username_legal: function () {
+       var patrn = /^([a-zA-Z0-9]|[._]){4,19}$/
+       if (!patrn.exec(this.username.toString)) return true
+       else return false
+     }
+   },
+   methods: {
+     try_register: function (e) {
       // 注册逻辑
-    }
-  },
-  route: {
-    data: function (transition) {
+       var username = this.username
+       var password = this.password
+       var app = this
+       if (this.username_legal && this.password_legal && this.password_match) {
+         $.post('http://107.182.176.96:2333/register', {username: username, password: password}, function (status) {
+           if (status.success) {
+             app.login({username: username})
+             app.$router.go({name: 'items'})
+           }
+         }, 'JSON')
+       }
+     }
+   },
+   route: {
+     data: function (transition) {
       // 如果已登录，则跳转至items页面
-      if (this.logged_in) {
-        transition.redirect({ name: 'items' })
-      } else {
-        transition.next()
-      }
-    }
-  }
+       if (this.logged_in) {
+         transition.redirect({ name: 'items' })
+       } else {
+         transition.next()
+       }
+     }
+   }
 }
 </script>
 

@@ -18,13 +18,13 @@
                 <div class="field">
                   <label>Charge Amount</label>
                   <div class="ui right labeled input">
-                    <input type="text" name="charge" placeholder="Amount">
+                    <input type="text" name="charge" placeholder="Amount" v-model="chargeAmount">
                     <div class="ui basic label">€</div>
                   </div>
                 </div>
               </div>
               <div class="four wide field">
-                <div class="ui button blue charge">
+                <div class="ui button blue charge" @click="try_charge">
                   Charge
                 </div>
               </div>
@@ -34,7 +34,7 @@
               <textarea name="address" cols="30" rows="4"></textarea>
             </div>
             <div class="field">
-              <div class="ui big blue button">
+              <div class="ui big blue button" @click="set_address">
                 Apply
               </div>
             </div>
@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   data: function () {
     return {
@@ -103,7 +105,8 @@ export default {
           time: 'time3'
         }
       ],
-      balance: 0
+      balance: 0,
+      chargeAmount: 0
     }
   },
   vuex: {
@@ -120,6 +123,15 @@ export default {
       setTimeout(function () {
         transition.next()
       }, 1000)
+    }
+  },
+  methods: {
+    try_charge: function (e) {
+      setTimeout(function () {
+        $.post('http://107.182.176.96:2333/login', {amount: this.chargeAmount}, function (status, newBalance) {
+          if (status.success) this.balance = newBalance
+        }, 'JSON')
+      }, 100)
     }
   }
 }

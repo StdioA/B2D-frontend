@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   name: 'LoginView',
   data: () => {
@@ -85,13 +87,19 @@ export default {
       app.trying = true
       setTimeout(function () {
         app.trying = false
-        if (username.trim() && username === password) {
-          app.login({username: username})
-          app.$router.go({name: 'items'})
-        } else {
-          app.login_status.failed = true
-          app.login_status.message = 'Incorrect username or password.'
-        }
+        $.post('http://107.182.176.96:2333/login', {
+          username: username,
+          password: password},
+          function (status) {
+            console.log(status)
+            if (status.success) {
+              app.login({username: username})
+              app.$router.go({name: 'items'})
+            } else {
+              app.login_status.failed = true
+              app.login_status.message = 'Incorrect username or password.'
+            }
+          }, 'JSON')
       }, 1000)
     }
   }
@@ -103,7 +111,7 @@ export default {
   background: #eee;
 
   &.grid {
-    margin-top: 15px;  
+    margin-top: 15px;
     height: 80%;
   }
   .image {
