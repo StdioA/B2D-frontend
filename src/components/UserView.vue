@@ -31,7 +31,7 @@
             </div>
             <div class="field">
               <label>Address</label>
-              <textarea name="address" cols="30" rows="4"></textarea>
+              <textarea name="address" cols="30" rows="4" v-model="address"></textarea>
             </div>
             <div class="field">
               <div class="ui big blue button" @click="set_address">
@@ -106,7 +106,8 @@ export default {
         }
       ],
       balance: 0,
-      chargeAmount: 0
+      chargeAmount: 100,
+      address: ''
     }
   },
   vuex: {
@@ -127,11 +128,20 @@ export default {
   },
   methods: {
     try_charge: function (e) {
+      var chargeAmount = this.chargeAmount
+      var app = this
       setTimeout(function () {
-        $.post('http://107.182.176.96:2333/login', {amount: this.chargeAmount}, function (status, newBalance) {
-          if (status.success) this.balance = newBalance
+        $.post('http://107.182.176.96:2333/charge', {
+          amount: chargeAmount
+        }, function (status, newBalance) {
+          if (status.success) console.log(status)
+          console.log(newBalance)
+          if (status.success) app.balance = app.balance + chargeAmount
         }, 'JSON')
-      }, 100)
+      }, 1000)
+    },
+    set_address: function (e) {
+
     }
   }
 }
