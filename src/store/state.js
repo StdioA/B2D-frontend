@@ -8,5 +8,6 @@ export default {
     item_id: null,
     quantity: null
   },
+  all_items_loaded: false,
   items: []
 }

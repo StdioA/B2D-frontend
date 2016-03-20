@@ -8,19 +8,19 @@
         </div>
       </div>
     </div>
-    <img src="{{ item.picture_url }}">
+    <img src="{{ item.itemPhoto }}">
   </div>
   <div class="content">
-    <a v-link="{ name:'item', params: { id: item.id } }"
-        class="header">{{ item.name }}</a>
+    <a v-link="{ name:'item', params: { id: item.itemId } }"
+        class="header">{{ item.itemName }}</a>
     <div class="meta">
-      <a>{{ item.category }}</a>
+      <a>{{ item.itemClass }}</a>
     </div>
-    <div class="description">{{ item.description }}</div>
+    <div class="description">{{ item.itemDes }}</div>
   </div>
   <div class="extra content">
-    <span class="right floated"> Published @ {{ item.publish_time }}</span>
-    <span><i class="euro icon"></i> {{ item.price }} </span>
+    <span class="right floated"> Published @ {{ item.itemPublish }}</span>
+    <span><i class="euro icon"></i> {{ item.itemPrice }} </span>
   </div>
 </div>
 </template>
@@ -64,7 +64,7 @@ export default {
       // 记录当前item id
       // this.select_item(this.item.id)
       this.make_order({
-        item_id: this.item.id,
+        item_id: this.item.itemId,
         quantity: 1
       })
       this.$router.go({ name: 'payment' })

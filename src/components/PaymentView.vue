@@ -11,12 +11,12 @@
           <div class="field">
             <!-- 后期替换成物品名 -->
             <label>Item</label>
-            <p name="item" class="ui confirmed input">{{ item.name }}</p>
+            <p name="item" class="ui confirmed input">{{ item.itemName }}</p>
           </div>
           <div class="fields">
             <div class="field">
               <label>Price</label>
-              <div class="ui confirmed input">{{ item.price }}</div>
+              <div class="ui confirmed input">{{ item.itemPrice }}</div>
             </div>
             <div class="operator mutiply">*</div>
             <div class="field">
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     total_cost: function () {
-      return this.item.price * this.quantity
+      return this.item.itemPrice * this.quantity
     }
   },
   methods: {
@@ -101,7 +101,7 @@ export default {
   },
   route: {
     data: function (transition) {
-      var item_id = this.current_order.item_id
+      var item_id = this.current_order.itemId
       if (item_id === undefined) {
         transition.redirect({ name: 'items' })
       } else if (this.logged_in === false) {

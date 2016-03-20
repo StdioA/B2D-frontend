@@ -1,5 +1,5 @@
 <template>
-<div class="ui main centered equal width grid items segment" :class="{ 'loading': $loadingRouteData }">
+<div class="ui main centered equal width grid basic segment" :class="{ 'loading': $loadingRouteData }">
   <div class="row">
     <h1>Items List</h1>
   </div>
@@ -23,37 +23,75 @@ import ItemCard from './items/ItemCard'
 
 export default {
   data: function () {
-    var items = []
-    // 这里可以异步载入吗？
-    for (let i = 1; i <= 10; i++) {
-      items.push({
-        id: i,
-        instock: true,
-        price: 5,
-        name: 'HDMI Cable #' + i,
-        category: 'electronic',
-        description: 'A HDMI cable in super high quality.',
-        publish_time: 'Mar. 19th',
-        picture_url: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
-      })
+    return {
+      items: {}
     }
-    this.add_items(items)
-    return {items: items}
+    // var items = []
+    // // 这里可以异步载入吗？
+    // for (let i = 1; i <= 10; i++) {
+    //   items.push({
+    //     id: i,
+    //     instock: true,
+    //     price: 5,
+    //     name: 'HDMI Cable #' + i,
+    //     category: 'electronic',
+    //     description: 'A HDMI cable in super high quality.',
+    //     publish_time: 'Mar. 19th',
+    //     picture_url: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
+    //   })
+    // }
+    // this.add_items(items)
+    // return {items: items}
   },
   components: {
     ItemCard
   },
   vuex: {
+    getters: {
+      items_loaded: (state) => state.all_items_loaded,
+      items: (state) => state.items
+    },
     actions: {
       add_items: ({ dispatch }, items) => {
         dispatch('ADD_ITEMS', items)
+        dispatch('ALL_ITEMS_LOADED')
       }
     }
   },
   route: {
     // 应该在data钩子里异步载入
     data: function (transition) {
-      this.add_items(this.items)
+      if (this.items_loaded) {
+        // 已经缓存所有商品，直接调用
+        transition.next({ items: this.items })
+      } else {
+        var app = this
+        $.get('http://107.182.176.96:2333/items', function (data, status) {
+          if (status === 'success' && data.success) {
+            app.add_items(data.items)
+            transition.next({items: data.items})
+          }
+        }, 'JSON')
+        // 加载所有的商品
+        // setTimeout(function () {
+        //   var items = []
+
+        //   for (let i = 1; i <= 10; i++) {
+        //     items.push({
+        //       id: i,
+        //       instock: true,
+        //       price: 5,
+        //       name: 'HDMI Cable #' + i,
+        //       category: 'electronic',
+        //       description: 'A HDMI cable in super high quality.',
+        //       publish_time: 'Mar. 19th',
+        //       picture_url: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
+        //     })
+        //   }
+        //   app.add_items(items)
+        //   transition.next({items: items})
+        // }, 1000)
+      }
       setTimeout(function () {
         $('.special.cards .image').dimmer({
           on: 'hover'
@@ -62,34 +100,15 @@ export default {
         })
       }, 1000)
     }
-  // ready: function () {
-  //   this.add_items(this.items)
-  //   setTimeout(function () {
-  //     $('.special.cards .image').dimmer({
-  //       on: 'hover'
-  //     })
-  //   }, 1000)
-    // $.ready(function () {
-    //   console.log('ready')
-    //   $('.special.cards .image').dimmer({
-    //     on: 'hover'
-    //   })
-    // })
   }
 }
 </script>
 
-<style lang="less">
-.ui.menu .item img.logo {
-  margin-right: 1.5em;
-}
+<style lang="less" scoped>
 .main.container {
   margin-top: 7em;
 }
-.items {
-  .ui.text.container {
-    width: 70%;
-  }
+.ui.text.container {
+  width: 70%;
 }
-
 </style>

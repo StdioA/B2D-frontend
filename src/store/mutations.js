@@ -11,15 +11,15 @@ export default {
     console.log('make_order: ' + JSON.stringify(order))
     state.current_order = order
   },
-  // SELECT_ITEM (state, id) {
-  //   state.current_item = id
-  // },
+  ALL_ITEMS_LOADED (state, items) {
+    state.all_items_loaded = true
+  },
   ADD_ITEMS (state, items) {
     for (let item of items) {
-      state.items[item.id] = item
+      state.items[item.itemId] = item
     }
   },
   ADD_ITEM (state, item) {
-    state.items[item.id] = item
+    state.items[item.itemId] = item
   }
 }
