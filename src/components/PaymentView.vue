@@ -19,10 +19,10 @@
               <div class="ui confirmed input">{{ item.itemPrice }}</div>
             </div>
             <div class="operator mutiply">*</div>
-            <div class="field">
+            <div class="field" :class="{'error':quantityerror}">
               <!-- <input type="text" name="item" placeholder="Item" v-model="item_id"> -->
               <label>Quantity</label>
-              <input type="text" name="quantity" placeholder="Item" v-model="quantity">
+              <input type="text" name="quantity" placeholder="Item" v-model="quantity" number>
             </div>
             <div class="operator equal">=</div>
             <div class="field">
@@ -34,28 +34,18 @@
           <div class="fields">
             <div class="four wide field">
               <label>Wallet</label>
-              <!-- <input type="text" name="wallet" placeholder="Wallet"> -->
+              <!-- TODO: 读取用户余额 -->              
               <div class="ui confirmed input">0</div>
             </div>
           </div>
-            <!-- <div class="four wide field">
-              <div class="field">
-                <label>Charge Amount</label>
-                <input type="text" name="charge" placeholder="Amount">
-              </div>
-            </div>
-            <div class="four wide field">
-              <div class="ui button blue charge">
-                Charge
-              </div>
-            </div> -->
           <div class="field">
             <label>Address</label>
+            <!-- TODO: 绑上v-model -->
             <textarea name="address" cols="30" rows="4"></textarea>
           </div>
           <div class="field">
             <div class="ui massive buttons">
-              <div class="ui green button">
+              <div class="ui green button" :class="{'loading':buying}" @click="confirm" id="buy">
                 Ok I'm sure, BUY IT!
               </div>
               <div class="or"></div>
@@ -71,13 +61,15 @@
 </template>
 
 <script>
-// import $ from 'jquery'
+import $ from 'jquery'
 
 export default {
   data: function () {
     return {
       item: {},
-      quantity: 1
+      quantity: 1,
+      buying: false,
+      quantityerror: false
     }
   },
   vuex: {
@@ -92,11 +84,33 @@ export default {
   computed: {
     total_cost: function () {
       return this.item.itemPrice * this.quantity
+    },
+    quantityerror: function () {
+      return !(this.quantity > 0)
     }
   },
   methods: {
     go_back: function () {
       this.$route.router.go({ name: 'item', params: { id: this.current_order.item_id } })
+    },
+    confirm: function () {
+      var item_id = this.item.item_id
+      var quantity = this.quantity
+      var app = this
+
+      app.buying = true
+
+      $.post('http://107.182.176.96:2333/buy', {
+        itemId: item_id,
+        quantity: quantity
+        // TODO: 加上收货地址
+      }, function (data, status) {
+        app.buying = false
+        $('#buy').text('OK!')
+        setTimeout(function () {
+          app.$route.router.go({name: 'items'})
+        }, 1000)
+      })
     }
   },
   route: {
