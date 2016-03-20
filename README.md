@@ -30,3 +30,6 @@ For detailed explanation on how things work, checkout the [guide](https://github
 
 username:123  
 password:123_password
+
+## Introduction
+The introduction of our group and tools we use has been publish in the homepage.
