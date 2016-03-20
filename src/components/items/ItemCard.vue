@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <img src="{{ item.itemPhoto }}">
+    <img :src="item.itemPhoto">
   </div>
   <div class="content">
     <a v-link="{ name:'item', params: { id: item.itemId } }"

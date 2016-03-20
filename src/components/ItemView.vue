@@ -102,7 +102,7 @@ export default {
       // console.log('Buy ' + this.item.id)
       // this.select_item(this.item.id)
       this.make_order({
-        item_id: this.item.id,
+        item_id: this.item.itemId,
         quantity: this.quantity
       })
       this.$router.go({ name: 'payment' })
