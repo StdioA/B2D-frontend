@@ -35,7 +35,7 @@
             </div>
             <div class="field">
               <div class="ui big blue button" @click="set_address">
-                Apply
+                Apply New Address
               </div>
             </div>
           </div>
@@ -88,25 +88,9 @@ import $ from 'jquery'
 export default {
   data: function () {
     return {
-      orders: [
-        {
-          item: 'item1',
-          amount: 1,
-          time: 'time1'
-        },
-        {
-          item: 'item2',
-          amount: 2,
-          time: 'time2'
-        },
-        {
-          item: 'item3',
-          amount: 3,
-          time: 'time3'
-        }
-      ],
+      orders: [],
       balance: 0,
-      chargeAmount: 100,
+      chargeAmount: 0,
       address: ''
     }
   },
@@ -121,7 +105,25 @@ export default {
         transition.redirect({ name: 'login' })
       }
       // 异步操作获取数据
+      var app = this
       setTimeout(function () {
+        $.get('http://107.182.176.96:2333/profile', function (data) {
+          app.balance = data.balance
+          app.address = data.userAddress
+        }, 'JSON')
+        $.get('http://107.182.176.96:2333/orders', function (data) {
+          var orderS = []
+          for (var order in data.orders) {
+            console.log(order.orderTime)
+            orderS.push({
+              item: data.orders[order].orderItemId,
+              amount: data.orders[order].orderPrice,
+              time: data.orders[order].orderTime
+            })
+            console.log(orderS)
+            app.orders = orderS
+          }
+        }, 'JSON')
         transition.next()
       }, 1000)
     }
@@ -134,14 +136,19 @@ export default {
         $.post('http://107.182.176.96:2333/charge', {
           amount: chargeAmount
         }, function (status, newBalance) {
-          if (status.success) console.log(status)
-          console.log(newBalance)
           if (status.success) app.balance = app.balance + chargeAmount
         }, 'JSON')
       }, 1000)
     },
     set_address: function (e) {
-
+      var app = this
+      setTimeout(function () {
+        $.post('http://107.182.176.96:2333/profile', {
+          address: app.address
+        }, function (status) {
+          if (status.success) app.address = app.address
+        }, 'JSON')
+      }, 1000)
     }
   }
 }

@@ -91,7 +91,6 @@ export default {
           username: username,
           password: password},
           function (status) {
-            console.log(status)
             if (status.success) {
               app.login({username: username})
               app.$router.go({name: 'items'})

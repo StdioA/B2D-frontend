@@ -34,14 +34,14 @@
           <div class="fields">
             <div class="four wide field">
               <label>Wallet</label>
-              <!-- TODO: 读取用户余额 -->              
-              <div class="ui confirmed input">0</div>
+              <!-- TODO: 读取用户余额 -->
+              <div class="ui confirmed input" v-model="balance">0</div>
             </div>
           </div>
           <div class="field">
             <label>Address</label>
             <!-- TODO: 绑上v-model -->
-            <textarea name="address" cols="30" rows="4"></textarea>
+            <textarea name="address" cols="30" rows="4" v-model="address"></textarea>
           </div>
           <div class="field">
             <div class="ui massive buttons">
@@ -69,7 +69,9 @@ export default {
       item: {},
       quantity: 1,
       buying: false,
-      quantityerror: false
+      quantityerror: false,
+      address: '',
+      balance: 0
     }
   },
   vuex: {
@@ -96,14 +98,15 @@ export default {
     confirm: function () {
       var item_id = this.item.item_id
       var quantity = this.quantity
+      var address = this.address
       var app = this
 
       app.buying = true
 
       $.post('http://107.182.176.96:2333/buy', {
         itemId: item_id,
-        quantity: quantity
-        // TODO: 加上收货地址
+        quantity: quantity,
+        address: address
       }, function (data, status) {
         app.buying = false
         $('#buy').text('OK!')
@@ -125,14 +128,20 @@ export default {
         if (item === undefined) {
           transition.redirect({ name: 'item', params: { id: item_id } })
         } else {
+          var app = this
+          $.get('http://107.182.176.96:2333/profile', function (data) {
+            app.balance = data.balance
+            app.address = data.userAddress
+            console.log(data.balance)
+          }, 'JSON')
           transition.next({
             item: item,
             quantity: this.current_order.quantity
           })
         }
       }
-    }
     // canReuse: () => false
+    }
   }
 }
 </script>
