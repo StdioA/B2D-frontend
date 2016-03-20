@@ -101,8 +101,8 @@ export default {
   },
   route: {
     data: function (transition) {
-      var item_id = this.current_order.itemId
-      if (item_id === undefined) {
+      var item_id = this.current_order.item_id
+      if (item_id === null) {
         transition.redirect({ name: 'items' })
       } else if (this.logged_in === false) {
         transition.redirect({ name: 'login' })

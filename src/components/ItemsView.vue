@@ -64,6 +64,11 @@ export default {
       if (this.items_loaded) {
         // 已经缓存所有商品，直接调用
         transition.next({ items: this.items })
+        setTimeout(function () {
+          $('.special.cards .image').dimmer({
+            on: 'hover'
+          })
+        }, 1000)
       } else {
         var app = this
         $.get('http://107.182.176.96:2333/items', function (data, status) {
@@ -71,34 +76,13 @@ export default {
             app.add_items(data.items)
             transition.next({items: data.items})
           }
+          setTimeout(function () {
+            $('.special.cards .image').dimmer({
+              on: 'hover'
+            })
+          }, 1000)
         }, 'JSON')
-        // 加载所有的商品
-        // setTimeout(function () {
-        //   var items = []
-
-        //   for (let i = 1; i <= 10; i++) {
-        //     items.push({
-        //       id: i,
-        //       instock: true,
-        //       price: 5,
-        //       name: 'HDMI Cable #' + i,
-        //       category: 'electronic',
-        //       description: 'A HDMI cable in super high quality.',
-        //       publish_time: 'Mar. 19th',
-        //       picture_url: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
-        //     })
-        //   }
-        //   app.add_items(items)
-        //   transition.next({items: items})
-        // }, 1000)
       }
-      setTimeout(function () {
-        $('.special.cards .image').dimmer({
-          on: 'hover'
-        })
-        transition.next({
-        })
-      }, 1000)
     }
   }
 }
