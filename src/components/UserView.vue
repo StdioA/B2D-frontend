@@ -57,7 +57,7 @@
                 <td class="six wide collapsing">{{ order.time }}</td>
               </tr>
             </tbody>
-            <tfoot>
+            <!-- <tfoot>
               <tr>
                 <th colspan="3">
                   <div class="ui right floated pagination menu">
@@ -74,7 +74,7 @@
                   </div>
                 </th>
               </tr>
-            </tfoot>
+            </tfoot> -->
           </table>
         </div>
       </div>
@@ -84,6 +84,7 @@
 
 <script>
 import $ from 'jquery'
+// import Promise from 'es6-promise'
 
 export default {
   data: function () {
@@ -104,51 +105,49 @@ export default {
       if (!this.user.logged_in) {
         transition.redirect({ name: 'login' })
       }
+      var datas = {}
+      // var app = this
+
       // 异步操作获取数据
-      var app = this
-      setTimeout(function () {
-        $.get('http://107.182.176.96:2333/profile', function (data) {
-          app.balance = data.balance
-          app.address = data.userAddress
-        }, 'JSON')
+      $.get('http://107.182.176.96:2333/profile', function (data) {
+        datas.balance = data.balance
+        datas.address = data.userAddress
+
         $.get('http://107.182.176.96:2333/orders', function (data) {
           var orderS = []
           for (var order in data.orders) {
-            console.log(order.orderTime)
             orderS.push({
               item: data.orders[order].orderItemId,
               amount: data.orders[order].orderPrice,
               time: data.orders[order].orderTime
             })
-            console.log(orderS)
-            app.orders = orderS
           }
+          datas.orders = orderS
+
+          transition.next(datas)
         }, 'JSON')
-        transition.next()
-      }, 1000)
+      }, 'JSON')
     }
   },
   methods: {
     try_charge: function (e) {
-      var chargeAmount = this.chargeAmount
+      var chargeAmount = Number(this.chargeAmount)
       var app = this
-      setTimeout(function () {
-        $.post('http://107.182.176.96:2333/charge', {
-          amount: chargeAmount
-        }, function (status, newBalance) {
-          if (status.success) app.balance = app.balance + chargeAmount
-        }, 'JSON')
-      }, 1000)
+
+      $.post('http://107.182.176.96:2333/charge', {
+        amount: chargeAmount
+      }, function (status, newBalance) {
+        if (status.success) app.balance = app.balance + chargeAmount
+      }, 'JSON')
     },
     set_address: function (e) {
       var app = this
-      setTimeout(function () {
-        $.post('http://107.182.176.96:2333/profile', {
-          address: app.address
-        }, function (status) {
-          if (status.success) app.address = app.address
-        }, 'JSON')
-      }, 1000)
+
+      $.post('http://107.182.176.96:2333/profile', {
+        address: app.address
+      }, function (status) {
+        if (status.success) app.address = app.address
+      }, 'JSON')
     }
   }
 }
