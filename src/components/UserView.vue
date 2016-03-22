@@ -132,20 +132,39 @@ export default {
   methods: {
     try_charge: function (e) {
       var chargeAmount = Number(this.chargeAmount)
+      console.log(e.target)
+      var button = e.target
       var app = this
+
+      $(e.target).addClass('loading')
 
       $.post('http://107.182.176.96:2333/charge', {
         amount: chargeAmount
       }, function (status, newBalance) {
+        $(button).removeClass('loading')
+        $(button).addClass('green')
+        setTimeout(function () {
+          $(button).removeClass('green')
+        }, 1000)
+
         if (status.success) app.balance = app.balance + chargeAmount
       }, 'JSON')
     },
     set_address: function (e) {
+      var button = e.target
       var app = this
+
+      $(e.target).addClass('loading')
 
       $.post('http://107.182.176.96:2333/profile', {
         address: app.address
       }, function (status) {
+        $(button).removeClass('loading')
+        $(button).addClass('green')
+        setTimeout(function () {
+          $(button).removeClass('green')
+        }, 1000)
+
         if (status.success) app.address = app.address
       }, 'JSON')
     }
