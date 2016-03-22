@@ -33,10 +33,6 @@
       <img src="../assets/logos/vue.svg" class="ui centered mini image">
       <div class="ui horizontal small divided link list">
         <div class="item">Powered by <a href="//vuejs.org">Vue.js</a></div>
-        <!-- <a class="item" href="#">Site Map</a>
-        <a class="item" href="#">Contact Us</a>
-        <a class="item" href="#">Terms and Conditions</a>
-        <a class="item" href="#">Privacy Policy</a> -->
       </div>
     </div>
   </div>

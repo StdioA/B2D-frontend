@@ -119,7 +119,7 @@
     </div>
   </div>
 
-  <div class="ui vertical stripe segment">
+  <!-- <div class="ui vertical stripe segment">
     <div class="ui middle aligned stackable grid container">
       <div class="row">
         <div class="eight wide column">
@@ -132,33 +132,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="ui inverted vertical footer segment">
-    <div class="ui container">
-      <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">买买买</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">买买买</a>
-            <a href="#" class="item">买买买</a>
-            <a href="#" class="item">买买买</a>
-            <a href="#" class="item">买买买</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">买买买</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">买买买</a>
-            <a href="#" class="item">买买买</a>
-            <a href="#" class="item">买买买</a>
-            <a href="#" class="item">买买买</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">买！</h4>
-          <p>Extra space for 买买买</p>
-        </div>
+    <div class="ui center aligned container">
+      <div class="row">
+        <img src="../assets/logos/vue.svg" class="ui centered mini image">
+      </div>
+      <div class="row">
+        <div class="item">Buy2Die is Powered by <a href="//vuejs.org">Vue.js</a></div>
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@ import ItemView from './components/ItemView'
 import ItemsView from './components/ItemsView'
 import PaymentView from './components/PaymentView'
 
-Vue.config.debug = true
+// Vue.config.debug = true
 Vue.use(Router)
 Vue.use(Vuex)
 
